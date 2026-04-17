@@ -8,7 +8,7 @@ Language servers, MCP servers, hooks, and workflow helpers &mdash; each tool boo
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-plugin%20marketplace-6B4FBB)](https://docs.claude.com/en/docs/claude-code)
-[![Plugins](https://img.shields.io/badge/plugins-23-brightgreen)](#plugins)
+[![Plugins](https://img.shields.io/badge/plugins-24-brightgreen)](#plugins)
 [![Maintenance](https://img.shields.io/badge/status-active-success)](#)
 
 [Install](#install) &nbsp;·&nbsp; [Plugins](#plugins) &nbsp;·&nbsp; [Design](#design) &nbsp;·&nbsp; [Layout](#repository-layout) &nbsp;·&nbsp; [Contributing](#contributing)
@@ -50,6 +50,7 @@ Grouped by [plugin kind](https://docs.claude.com/en/docs/claude-code/plugins). A
 | Plugin | Purpose | Runtime chain |
 | --- | --- | --- |
 | [`context7`](plugins/context7) | Up-to-date library documentation lookup (Upstash Context7) | JS/TS |
+| [`deepwiki`](plugins/deepwiki) | AI-grounded Q&A over any public GitHub repo's wiki (Devin DeepWiki) | Remote HTTP |
 
 ### Hooks &mdash; Formatters
 

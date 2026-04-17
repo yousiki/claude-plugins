@@ -150,6 +150,20 @@
       }
     },
     {
+      "name": "deepwiki",
+      "source": "./plugins/deepwiki",
+      "description": "Devin DeepWiki MCP server for AI-grounded Q&A over any public GitHub repository's wiki. Remote HTTP transport, no auth.",
+      "version": "0.1.0",
+      "category": "development",
+      "strict": false,
+      "mcpServers": {
+        "deepwiki": {
+          "type": "http",
+          "url": "https://mcp.deepwiki.com/mcp"
+        }
+      }
+    },
+    {
       "name": "prettier-css-formatter",
       "source": "./plugins/prettier-css-formatter",
       "description": "Auto-format CSS / SCSS / Less with Prettier after Claude writes them. PostToolUse hook; bunx / pnpm dlx / npx fallback.",
