@@ -2,9 +2,9 @@
 
 # yousiki's Claude Code Plugins
 
-**A personal, curated marketplace of [Claude Code](https://docs.claude.com/en/docs/claude-code) plugins.**
+**A personal marketplace of [Claude Code](https://docs.claude.com/en/docs/claude-code) plugins.**
 
-Language servers, MCP servers, hooks, and workflow helpers &mdash; each tool boots through a runtime fallback chain (`bunx` / `uvx` and friends), so nothing has to be installed globally on the host.
+Language servers, MCP servers, and formatter hooks &mdash; each tool is wrapped in a launcher that probes a runtime fallback chain (`bunx` / `uvx` and friends), so nothing has to be installed globally on the host.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-plugin%20marketplace-6B4FBB)](https://docs.claude.com/en/docs/claude-code)
@@ -19,11 +19,11 @@ Language servers, MCP servers, hooks, and workflow helpers &mdash; each tool boo
 
 ## Highlights
 
-- **Zero host install.** Each plugin launches through a fallback chain &mdash; JS/TS via `bunx` → `pnpm dlx` → `npx`, Python via `uvx` → `pipx run`.
-- **Always fresh.** Every invocation resolves the package on demand from the registry; no stale global binaries to babysit.
-- **Heterogeneous.** LSPs, MCP servers, and hooks live side by side; slash commands and agents will land as I adopt them.
-- **Self-contained.** One folder per plugin, metadata-only &mdash; no vendored binaries, no submodules.
-- **Opinionated.** Only tools I personally use day to day; each one is battle-tested in my own workflow before shipping.
+- **No global installs required.** Each plugin launches through a runtime fallback chain &mdash; JS/TS via `bunx` → `pnpm dlx` → `npx`, Python via `uvx` → `pipx run`. You only need one runtime from each chain on `PATH`.
+- **On-demand resolution.** Packages resolve from the registry at launch time, so there are no pinned global binaries to keep up to date.
+- **Mixed plugin kinds.** LSPs, MCP servers, and formatter hooks live side by side; slash commands and agents may land later.
+- **Metadata-only folders.** One folder per plugin &mdash; no vendored binaries, no submodules.
+- **Personal scope.** These are the tools I reach for; expect the roster to drift as my own workflow changes.
 
 ## Plugins
 
@@ -70,7 +70,7 @@ Auto-format on `PostToolUse` of `Write` / `Edit` / `MultiEdit`. Subset variants 
 | [`prettier-markdown-formatter`](plugins/prettier-markdown-formatter) | `.md`, `.mdx` | JS/TS |
 | [`prettier-yaml-formatter`](plugins/prettier-yaml-formatter) | `.yaml`, `.yml` | JS/TS |
 
-> More plugins &mdash; slash commands, agents, additional MCP servers &mdash; will be added over time as I adopt them.
+> Additional plugin kinds (slash commands, agents, more MCP servers) may be added as I start using them.
 
 ## Install
 
@@ -98,7 +98,7 @@ Three rules every plugin follows:
 2. **Fallback by _distribution_ ecosystem, not by _language_ ecosystem.** Pyright is a Python tool but ships on npm &mdash; so it routes through the JS/TS chain. Basedpyright ships on PyPI &mdash; so it uses the Python chain.
 3. **Metadata-only plugin folders.** `plugin.json` wires the launcher path; the launcher resolves the binary. Nothing is vendored, nothing is pinned beyond the tool's own versioning.
 
-Formatter hooks additionally follow a **graceful-miss** contract: if no runtime on the fallback chain is present, the hook exits `0` silently rather than blocking the write.
+Formatter hooks additionally follow a **graceful-miss** contract: if no runtime on the fallback chain is present, the hook exits `0` silently rather than blocking the write. This is intentional &mdash; a missing formatter shouldn't break the edit flow.
 
 ## Repository Layout
 
@@ -123,14 +123,14 @@ Formatter hooks additionally follow a **graceful-miss** contract: if no runtime 
 
 ## Contributing
 
-This marketplace is primarily for my own use, but the scaffolding is deliberately general &mdash; feel free to fork and adapt, or open an issue / PR if you spot something broken.
+This marketplace is primarily for my own use, and I don't promise any particular support level &mdash; but the scaffolding is deliberately general, so feel free to fork and adapt, or open an issue / PR if you spot something broken.
 
 To add a new plugin:
 
 1. **Pick the runtime chain** based on how the tool is _distributed_, not what it analyzes. Rule of thumb: if it ships on npm (like Pyright), use the JS/TS chain; if it ships on PyPI (like Basedpyright), use the Python chain.
 2. **Copy the matching template** from [`templates/`](templates/) into `plugins/<name>/` and replace every `<placeholder>` with the concrete value. Formatter hooks start from [`templates/formatter-hook-plugin/`](templates/formatter-hook-plugin/).
 3. **Register the plugin** by appending an entry to [`.claude-plugin/marketplace.json`](.claude-plugin/marketplace.json).
-4. **Verify the fallback chain** by unsetting each runtime in turn (`PATH` manipulation works) and confirming the launcher still succeeds with any single one present.
+4. **Sanity-check the launcher** by invoking it directly &mdash; and, if you want to confirm the fallback works, try unsetting each runtime in turn (`PATH` manipulation works) and check the launcher still resolves with any single one present.
 
 ## License
 
