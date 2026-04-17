@@ -1,5 +1,7 @@
 # Claude Code Plugin Marketplace Design
 
+> **Superseded by [2026-04-17-marketplace-design.md](2026-04-17-marketplace-design.md).** This revision was drafted before confirming the actual shape of `marketplace.json`, the `lspServers` field, and the constraints on `command` values. Kept for history; do not implement from this file.
+
 ## Goal
 Build a custom Claude Code plugin marketplace in this repo that stays close to the official marketplace layout while adapting selected plugins to run without assuming host-level global installs.
 
