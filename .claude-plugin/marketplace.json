@@ -11,7 +11,6 @@
       "description": "Basedpyright Python language server (stricter pyright fork). uvx / pipx run fallback.",
       "version": "0.1.0",
       "category": "development",
-      "strict": false,
       "lspServers": {
         "basedpyright": {
           "command": "${CLAUDE_PLUGIN_ROOT}/scripts/launch-basedpyright-lsp.sh",
@@ -29,7 +28,6 @@
       "description": "bash-language-server for shell scripts. bunx / pnpm dlx / npx fallback. Integrates with shellcheck when present on PATH.",
       "version": "0.1.0",
       "category": "development",
-      "strict": false,
       "lspServers": {
         "bash": {
           "command": "${CLAUDE_PLUGIN_ROOT}/scripts/launch-bash-lsp.sh",
@@ -47,7 +45,6 @@
       "description": "Auto-format JS / TS / JSON with Biome after Claude writes them. Monolith PostToolUse hook; bunx / pnpm dlx / npx fallback.",
       "version": "0.1.0",
       "category": "development",
-      "strict": false,
       "hooks": {
         "PostToolUse": [
           {
@@ -69,7 +66,6 @@
       "description": "Auto-format JS / TS only with Biome after Claude writes them. PostToolUse hook; bunx / pnpm dlx / npx fallback.",
       "version": "0.1.0",
       "category": "development",
-      "strict": false,
       "hooks": {
         "PostToolUse": [
           {
@@ -91,7 +87,6 @@
       "description": "Auto-format JSON / JSONC only with Biome after Claude writes them. PostToolUse hook; bunx / pnpm dlx / npx fallback.",
       "version": "0.1.0",
       "category": "development",
-      "strict": false,
       "hooks": {
         "PostToolUse": [
           {
@@ -113,7 +108,6 @@
       "description": "Biome language server (lsp-proxy) for JS / TS / JSX / TSX / JSON / JSONC / CSS / GraphQL. bunx / pnpm dlx / npx fallback.",
       "version": "0.1.0",
       "category": "development",
-      "strict": false,
       "lspServers": {
         "biome": {
           "command": "${CLAUDE_PLUGIN_ROOT}/scripts/launch-biome-lsp.sh",
@@ -142,7 +136,6 @@
       "description": "Upstash Context7 MCP server for up-to-date documentation lookup. bunx / pnpm dlx / npx fallback.",
       "version": "0.1.0",
       "category": "development",
-      "strict": false,
       "mcpServers": {
         "context7": {
           "command": "${CLAUDE_PLUGIN_ROOT}/scripts/launch-context7.sh"
@@ -155,7 +148,6 @@
       "description": "Auto-format CSS / SCSS / Less with Prettier after Claude writes them. PostToolUse hook; bunx / pnpm dlx / npx fallback.",
       "version": "0.1.0",
       "category": "development",
-      "strict": false,
       "hooks": {
         "PostToolUse": [
           {
@@ -177,7 +169,6 @@
       "description": "Auto-format JS / TS / JSON / CSS / HTML / Markdown / YAML with Prettier after Claude writes them. Monolith PostToolUse hook; bunx / pnpm dlx / npx fallback.",
       "version": "0.1.0",
       "category": "development",
-      "strict": false,
       "hooks": {
         "PostToolUse": [
           {
@@ -199,7 +190,6 @@
       "description": "Auto-format HTML with Prettier after Claude writes them. PostToolUse hook; bunx / pnpm dlx / npx fallback.",
       "version": "0.1.0",
       "category": "development",
-      "strict": false,
       "hooks": {
         "PostToolUse": [
           {
@@ -221,7 +211,6 @@
       "description": "Auto-format JS / TS with Prettier after Claude writes them. PostToolUse hook; bunx / pnpm dlx / npx fallback.",
       "version": "0.1.0",
       "category": "development",
-      "strict": false,
       "hooks": {
         "PostToolUse": [
           {
@@ -243,7 +232,6 @@
       "description": "Auto-format JSON / JSON5 / JSONC with Prettier after Claude writes them. PostToolUse hook; bunx / pnpm dlx / npx fallback.",
       "version": "0.1.0",
       "category": "development",
-      "strict": false,
       "hooks": {
         "PostToolUse": [
           {
@@ -265,7 +253,6 @@
       "description": "Auto-format Markdown / MDX with Prettier after Claude writes them. PostToolUse hook; bunx / pnpm dlx / npx fallback.",
       "version": "0.1.0",
       "category": "development",
-      "strict": false,
       "hooks": {
         "PostToolUse": [
           {
@@ -287,7 +274,6 @@
       "description": "Auto-format YAML with Prettier after Claude writes them. PostToolUse hook; bunx / pnpm dlx / npx fallback.",
       "version": "0.1.0",
       "category": "development",
-      "strict": false,
       "hooks": {
         "PostToolUse": [
           {
@@ -309,7 +295,6 @@
       "description": "Microsoft Pyright Python language server. Routed through the JS/TS chain because pyright is npm-first.",
       "version": "0.1.0",
       "category": "development",
-      "strict": false,
       "lspServers": {
         "pyright": {
           "command": "${CLAUDE_PLUGIN_ROOT}/scripts/launch-pyright-lsp.sh",
@@ -327,7 +312,6 @@
       "description": "Auto-format Python files with ruff after Claude writes them. PostToolUse hook; uvx / pipx run fallback.",
       "version": "0.1.0",
       "category": "development",
-      "strict": false,
       "hooks": {
         "PostToolUse": [
           {
@@ -349,7 +333,6 @@
       "description": "Tombi TOML language server (schema-aware; Helix uses it by default). uvx / pipx run fallback.",
       "version": "0.1.0",
       "category": "development",
-      "strict": false,
       "lspServers": {
         "tombi": {
           "command": "${CLAUDE_PLUGIN_ROOT}/scripts/launch-tombi-lsp.sh",
@@ -366,7 +349,6 @@
       "description": "Astral ty (Rust-based Python type checker) as an LSP. BETA — pre-1.0, breaking changes ship between patch releases.",
       "version": "0.1.0",
       "category": "development",
-      "strict": false,
       "lspServers": {
         "ty": {
           "command": "${CLAUDE_PLUGIN_ROOT}/scripts/launch-ty-lsp.sh",
@@ -384,7 +366,6 @@
       "description": "typescript-language-server for TypeScript / JavaScript. bunx / pnpm dlx / npx fallback, pulls the typescript peer dep fresh.",
       "version": "0.1.0",
       "category": "development",
-      "strict": false,
       "lspServers": {
         "typescript": {
           "command": "${CLAUDE_PLUGIN_ROOT}/scripts/launch-typescript-lsp.sh",
@@ -408,7 +389,6 @@
       "description": "VS Code CSS / SCSS / Less language server (from vscode-langservers-extracted). bunx / pnpm dlx / npx fallback.",
       "version": "0.1.0",
       "category": "development",
-      "strict": false,
       "lspServers": {
         "vscode-css": {
           "command": "${CLAUDE_PLUGIN_ROOT}/scripts/launch-vscode-css-lsp.sh",
@@ -427,7 +407,6 @@
       "description": "VS Code HTML language server (from vscode-langservers-extracted). bunx / pnpm dlx / npx fallback.",
       "version": "0.1.0",
       "category": "development",
-      "strict": false,
       "lspServers": {
         "vscode-html": {
           "command": "${CLAUDE_PLUGIN_ROOT}/scripts/launch-vscode-html-lsp.sh",
@@ -445,7 +424,6 @@
       "description": "VS Code JSON / JSONC language server (from vscode-langservers-extracted). bunx / pnpm dlx / npx fallback. Overlaps biome-lsp on .json/.jsonc.",
       "version": "0.1.0",
       "category": "development",
-      "strict": false,
       "lspServers": {
         "vscode-json": {
           "command": "${CLAUDE_PLUGIN_ROOT}/scripts/launch-vscode-json-lsp.sh",
@@ -463,7 +441,6 @@
       "description": "yaml-language-server with built-in schema catalog (GitHub Actions, Kubernetes, docker-compose). bunx / pnpm dlx / npx fallback.",
       "version": "0.1.0",
       "category": "development",
-      "strict": false,
       "lspServers": {
         "yaml": {
           "command": "${CLAUDE_PLUGIN_ROOT}/scripts/launch-yaml-lsp.sh",
