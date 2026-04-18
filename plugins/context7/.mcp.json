@@ -1,7 +1,8 @@
 {
   "mcpServers": {
     "context7": {
-      "command": "${CLAUDE_PLUGIN_ROOT}/scripts/launch-context7.sh"
+      "type": "http",
+      "url": "https://mcp.context7.com/mcp"
     }
   }
 }

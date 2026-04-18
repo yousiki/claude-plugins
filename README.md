@@ -50,7 +50,7 @@ Grouped by [plugin kind](https://docs.claude.com/en/docs/claude-code/plugins). A
 | Plugin | Purpose | Runtime chain |
 | --- | --- | --- |
 | [`browseros`](plugins/browseros) | Drive the local [BrowserOS](https://www.browseros.com/) agentic browser (53 browser tools + 40+ app integrations) | Local HTTP |
-| [`context7`](plugins/context7) | Up-to-date library documentation lookup (Upstash Context7) | JS/TS |
+| [`context7`](plugins/context7) | Up-to-date library documentation lookup (Upstash Context7) | Remote HTTP |
 | [`deepwiki`](plugins/deepwiki) | AI-grounded Q&A over any public GitHub repo's wiki (Devin DeepWiki) | Remote HTTP |
 
 ### Hooks &mdash; Formatters
