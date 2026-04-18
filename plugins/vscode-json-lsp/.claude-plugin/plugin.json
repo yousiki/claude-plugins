@@ -1,7 +1,7 @@
 {
   "name": "vscode-json-lsp",
   "version": "0.1.0",
-  "description": "VS Code JSON language server, launched through bunx / pnpm dlx / npx without requiring a global install.",
+  "description": "VS Code JSON language server.",
   "author": { "name": "yousiki" },
   "homepage": "https://github.com/yousiki/claude-plugins/tree/main/plugins/vscode-json-lsp",
   "license": "MIT"

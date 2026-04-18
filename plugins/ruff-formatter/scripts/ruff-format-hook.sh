@@ -29,6 +29,7 @@ print((d.get("tool_input") or {}).get("file_path") or "")
 }
 
 FILE=$(extract_file_path || true)
+[ -f "$FILE" ] || exit 0
 
 case "$FILE" in
   *.py | *.pyi) ;;
