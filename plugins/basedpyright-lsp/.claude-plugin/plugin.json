@@ -1,6 +1,6 @@
 {
   "name": "basedpyright-lsp",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Basedpyright Python language server (community pyright fork with stricter defaults).",
   "author": { "name": "yousiki" },
   "homepage": "https://github.com/yousiki/claude-plugins/tree/main/plugins/basedpyright-lsp",

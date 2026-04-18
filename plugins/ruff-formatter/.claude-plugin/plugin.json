@@ -1,6 +1,6 @@
 {
   "name": "ruff-formatter",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Auto-format Python files with ruff after Claude writes them via a PostToolUse hook.",
   "author": { "name": "yousiki" },
   "homepage": "https://github.com/yousiki/claude-plugins/tree/main/plugins/ruff-formatter",

@@ -1,6 +1,6 @@
 {
   "name": "typescript-lsp",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "TypeScript / JavaScript language server (typescript-language-server).",
   "author": { "name": "yousiki" },
   "homepage": "https://github.com/yousiki/claude-plugins/tree/main/plugins/typescript-lsp",
