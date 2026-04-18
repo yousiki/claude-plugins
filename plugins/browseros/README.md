@@ -16,6 +16,10 @@ None. BrowserOS ships the MCP server inside the browser itself and exposes it on
 
 External-service auth (Gmail, Slack, …) is handled by BrowserOS itself via OAuth on first use; Claude Code never sees those credentials.
 
+## Security note
+
+MCP calls execute inside your **live BrowserOS session** — every site BrowserOS is already logged into (email, chat, code hosts, docs, Drive, Notion, …) is reachable through this plugin. Any Claude Code turn that uses the `browseros` MCP server can therefore read or mutate data in those services on your behalf. Install only if you're comfortable with that blast radius, and consider keeping sensitive sessions in a separate browser profile that BrowserOS doesn't share.
+
 ## Files
 
 - `.claude-plugin/plugin.json` — plugin metadata.
