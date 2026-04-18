@@ -4,7 +4,7 @@
 
 **A personal marketplace of [Claude Code](https://docs.claude.com/en/docs/claude-code) plugins.**
 
-Language servers, MCP servers, and formatter hooks &mdash; each tool is wrapped in a launcher that probes a runtime fallback chain (`bunx` / `uvx` and friends), so nothing has to be installed globally on the host.
+Language servers, MCP servers, formatter hooks, and room for future plugin kinds such as slash commands and agents. Tool-backed plugins are wrapped in launchers that probe a runtime fallback chain (`bunx` / `uvx` and friends), so nothing has to be installed globally on the host.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-plugin%20marketplace-6B4FBB)](https://docs.claude.com/en/docs/claude-code)
@@ -21,15 +21,15 @@ Language servers, MCP servers, and formatter hooks &mdash; each tool is wrapped 
 
 - **No global installs required.** Each plugin launches through a runtime fallback chain &mdash; JS/TS via `bunx` → `pnpm dlx` → `npx`, Python via `uvx` → `pipx run`. You only need one runtime from each chain on `PATH`.
 - **On-demand resolution.** Packages resolve from the registry at launch time, so there are no pinned global binaries to keep up to date.
-- **Mixed plugin kinds.** LSPs, MCP servers, and formatter hooks live side by side; slash commands and agents may land later.
+- **Broad plugin coverage.** Current plugins span language servers, MCP servers, and `PostToolUse` formatter hooks; the marketplace is structured to add future Claude Code plugin kinds such as slash commands and agents.
 - **Metadata-only folders.** One folder per plugin &mdash; no vendored binaries, no submodules.
 - **Personal scope.** These are the tools I reach for; expect the roster to drift as my own workflow changes.
 
 ## Plugins
 
-Grouped by [plugin kind](https://docs.claude.com/en/docs/claude-code/plugins). All plugins live under [`plugins/`](plugins/) and are registered in [`.claude-plugin/marketplace.json`](.claude-plugin/marketplace.json).
+Grouped by current [plugin kind](https://docs.claude.com/en/docs/claude-code/plugins). The roster is 25 plugins across language servers, MCP servers, and formatter hooks; future categories can be added when they become useful. All plugins live under [`plugins/`](plugins/) and are registered in [`.claude-plugin/marketplace.json`](.claude-plugin/marketplace.json).
 
-### Language Servers
+### Language Servers (11)
 
 | Plugin | Language | Runtime chain | Notes |
 | --- | --- | --- | --- |
@@ -45,15 +45,15 @@ Grouped by [plugin kind](https://docs.claude.com/en/docs/claude-code/plugins). A
 | [`vscode-css-lsp`](plugins/vscode-css-lsp) | CSS, SCSS, LESS | JS/TS | `vscode-langservers-extracted` (CSS binary) |
 | [`vscode-json-lsp`](plugins/vscode-json-lsp) | JSON, JSONC | JS/TS | `vscode-langservers-extracted` (JSON binary) |
 
-### MCP Servers
+### MCP Servers (3)
 
-| Plugin | Purpose | Runtime chain |
+| Plugin | Purpose | Transport |
 | --- | --- | --- |
 | [`browseros`](plugins/browseros) | Drive the local [BrowserOS](https://www.browseros.com/) agentic browser (53 browser tools + 40+ app integrations) | Local HTTP |
 | [`context7`](plugins/context7) | Up-to-date library documentation lookup (Upstash Context7) | Remote HTTP |
 | [`deepwiki`](plugins/deepwiki) | AI-grounded Q&A over any public GitHub repo's wiki (Devin DeepWiki) | Remote HTTP |
 
-### Hooks &mdash; Formatters
+### Hooks &mdash; Formatters (11)
 
 Auto-format on `PostToolUse` of `Write` / `Edit` / `MultiEdit`. Subset variants exist so you can pick only the languages you want formatted.
 
@@ -71,7 +71,7 @@ Auto-format on `PostToolUse` of `Write` / `Edit` / `MultiEdit`. Subset variants 
 | [`prettier-markdown-formatter`](plugins/prettier-markdown-formatter) | `.md`, `.mdx` | JS/TS |
 | [`prettier-yaml-formatter`](plugins/prettier-yaml-formatter) | `.yaml`, `.yml` | JS/TS |
 
-> Additional plugin kinds (slash commands, agents, more MCP servers) may be added as I start using them.
+> Additional plugin kinds (slash commands, agents, specialized hooks) may be added as I start using them.
 
 ## Install
 
@@ -93,7 +93,7 @@ Each plugin's folder lists the runtime candidates it probes &mdash; at least one
 
 ## Design
 
-Three rules every plugin follows:
+Three rules shared by plugin categories in this marketplace:
 
 1. **No global installs.** The launcher script probes a runtime chain and runs the tool on demand. Missing one runtime is fine; missing all of them fails loudly with a clear error.
 2. **Fallback by _distribution_ ecosystem, not by _language_ ecosystem.** Pyright is a Python tool but ships on npm &mdash; so it routes through the JS/TS chain. Basedpyright ships on PyPI &mdash; so it uses the Python chain.
