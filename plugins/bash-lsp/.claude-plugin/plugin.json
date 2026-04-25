@@ -4,5 +4,15 @@
   "description": "Bash language server.",
   "author": { "name": "yousiki" },
   "homepage": "https://github.com/yousiki/claude-plugins/tree/main/plugins/bash-lsp",
-  "license": "MIT"
+  "license": "MIT",
+  "lspServers": {
+    "bash": {
+      "command": "${CLAUDE_PLUGIN_ROOT}/scripts/launch-bash-lsp.sh",
+      "args": ["start"],
+      "extensionToLanguage": {
+        ".sh": "shellscript",
+        ".bash": "shellscript"
+      }
+    }
+  }
 }

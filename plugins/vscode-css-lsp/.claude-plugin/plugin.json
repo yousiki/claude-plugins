@@ -4,5 +4,16 @@
   "description": "VS Code CSS language server.",
   "author": { "name": "yousiki" },
   "homepage": "https://github.com/yousiki/claude-plugins/tree/main/plugins/vscode-css-lsp",
-  "license": "MIT"
+  "license": "MIT",
+  "lspServers": {
+    "vscode-css": {
+      "command": "${CLAUDE_PLUGIN_ROOT}/scripts/launch-vscode-css-lsp.sh",
+      "args": ["--stdio"],
+      "extensionToLanguage": {
+        ".css": "css",
+        ".scss": "scss",
+        ".less": "less"
+      }
+    }
+  }
 }

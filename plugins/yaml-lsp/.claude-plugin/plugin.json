@@ -4,5 +4,15 @@
   "description": "YAML language server.",
   "author": { "name": "yousiki" },
   "homepage": "https://github.com/yousiki/claude-plugins/tree/main/plugins/yaml-lsp",
-  "license": "MIT"
+  "license": "MIT",
+  "lspServers": {
+    "yaml": {
+      "command": "${CLAUDE_PLUGIN_ROOT}/scripts/launch-yaml-lsp.sh",
+      "args": ["--stdio"],
+      "extensionToLanguage": {
+        ".yaml": "yaml",
+        ".yml": "yaml"
+      }
+    }
+  }
 }

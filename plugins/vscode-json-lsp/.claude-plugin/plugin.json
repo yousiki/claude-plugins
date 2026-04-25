@@ -4,5 +4,15 @@
   "description": "VS Code JSON language server.",
   "author": { "name": "yousiki" },
   "homepage": "https://github.com/yousiki/claude-plugins/tree/main/plugins/vscode-json-lsp",
-  "license": "MIT"
+  "license": "MIT",
+  "lspServers": {
+    "vscode-json": {
+      "command": "${CLAUDE_PLUGIN_ROOT}/scripts/launch-vscode-json-lsp.sh",
+      "args": ["--stdio"],
+      "extensionToLanguage": {
+        ".json": "json",
+        ".jsonc": "jsonc"
+      }
+    }
+  }
 }

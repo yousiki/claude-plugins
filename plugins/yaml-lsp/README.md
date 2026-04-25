@@ -27,7 +27,7 @@ This plugin registers:
 - `.yml`
 - `.yaml`
 
-Runtime configuration (the `lspServers` block) is declared at the marketplace level in the root `.claude-plugin/marketplace.json` entry for this plugin.
+Runtime configuration (the `lspServers` block) is declared in this plugin's `.claude-plugin/plugin.json`.
 
 ## Notes
 
