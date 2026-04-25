@@ -16,7 +16,7 @@
       "name": "basedpyright-lsp",
       "source": "./plugins/basedpyright-lsp",
       "description": "Basedpyright Python language server (stricter pyright fork). uvx / pipx run fallback.",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "category": "development",
       "lspServers": {
         "basedpyright": {
@@ -33,7 +33,7 @@
       "name": "bash-lsp",
       "source": "./plugins/bash-lsp",
       "description": "bash-language-server for shell scripts. bunx / pnpm dlx / npx fallback. Integrates with shellcheck when present on PATH.",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "category": "development",
       "lspServers": {
         "bash": {
@@ -50,7 +50,7 @@
       "name": "biome-formatter",
       "source": "./plugins/biome-formatter",
       "description": "Auto-format JS / TS / JSON with Biome after Claude writes them. Monolith PostToolUse hook; bunx / pnpm dlx / npx fallback.",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "category": "development",
       "hooks": {
         "PostToolUse": [
@@ -71,7 +71,7 @@
       "name": "biome-js-formatter",
       "source": "./plugins/biome-js-formatter",
       "description": "Auto-format JS / TS only with Biome after Claude writes them. PostToolUse hook; bunx / pnpm dlx / npx fallback.",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "category": "development",
       "hooks": {
         "PostToolUse": [
@@ -92,7 +92,7 @@
       "name": "biome-json-formatter",
       "source": "./plugins/biome-json-formatter",
       "description": "Auto-format JSON / JSONC only with Biome after Claude writes them. PostToolUse hook; bunx / pnpm dlx / npx fallback.",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "category": "development",
       "hooks": {
         "PostToolUse": [
@@ -113,7 +113,7 @@
       "name": "biome-lsp",
       "source": "./plugins/biome-lsp",
       "description": "Biome language server (lsp-proxy) for JS / TS / JSX / TSX / JSON / JSONC / CSS / GraphQL. bunx / pnpm dlx / npx fallback.",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "category": "development",
       "lspServers": {
         "biome": {
@@ -309,7 +309,7 @@
       "name": "pyright-lsp",
       "source": "./plugins/pyright-lsp",
       "description": "Microsoft Pyright Python language server. Routed through the JS/TS chain because pyright is npm-first.",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "category": "development",
       "lspServers": {
         "pyright": {
@@ -326,7 +326,7 @@
       "name": "ruff-formatter",
       "source": "./plugins/ruff-formatter",
       "description": "Auto-format Python files with ruff after Claude writes them. PostToolUse hook; uvx / pipx run fallback.",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "category": "development",
       "hooks": {
         "PostToolUse": [
@@ -347,7 +347,7 @@
       "name": "tombi-lsp",
       "source": "./plugins/tombi-lsp",
       "description": "Tombi TOML language server (schema-aware; Helix uses it by default). uvx / pipx run fallback.",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "category": "development",
       "lspServers": {
         "tombi": {
@@ -380,7 +380,7 @@
       "name": "typescript-lsp",
       "source": "./plugins/typescript-lsp",
       "description": "typescript-language-server for TypeScript / JavaScript. bunx / pnpm dlx / npx fallback, pulls the typescript peer dep fresh.",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "category": "development",
       "lspServers": {
         "typescript": {
@@ -403,7 +403,7 @@
       "name": "vscode-css-lsp",
       "source": "./plugins/vscode-css-lsp",
       "description": "VS Code CSS / SCSS / Less language server (from vscode-langservers-extracted). bunx / pnpm dlx / npx fallback.",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "category": "development",
       "lspServers": {
         "vscode-css": {
@@ -421,7 +421,7 @@
       "name": "vscode-html-lsp",
       "source": "./plugins/vscode-html-lsp",
       "description": "VS Code HTML language server (from vscode-langservers-extracted). bunx / pnpm dlx / npx fallback.",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "category": "development",
       "lspServers": {
         "vscode-html": {
@@ -438,7 +438,7 @@
       "name": "vscode-json-lsp",
       "source": "./plugins/vscode-json-lsp",
       "description": "VS Code JSON / JSONC language server (from vscode-langservers-extracted). bunx / pnpm dlx / npx fallback. Overlaps biome-lsp on .json/.jsonc.",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "category": "development",
       "lspServers": {
         "vscode-json": {
@@ -455,7 +455,7 @@
       "name": "yaml-lsp",
       "source": "./plugins/yaml-lsp",
       "description": "yaml-language-server with built-in schema catalog (GitHub Actions, Kubernetes, docker-compose). bunx / pnpm dlx / npx fallback.",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "category": "development",
       "lspServers": {
         "yaml": {
