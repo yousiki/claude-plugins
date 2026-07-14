@@ -1,0 +1,68 @@
+{
+	"name": "languages-pack",
+	"version": "0.1.0",
+	"description": "All-in-one bundle of this marketplace's language servers and formatter hooks: Biome (JS/TS/JSX/TSX/JSON/JSONC/CSS/GraphQL), VS Code HTML, bash, basedpyright (Python), tombi (TOML), and yaml-language-server, plus the ruff/biome/prettier formatter hooks. One install for broad multi-language coverage with no overlapping servers.",
+	"author": { "name": "yousiki" },
+	"homepage": "https://github.com/yousiki/claude-plugins/tree/main/plugins/languages-pack",
+	"license": "MIT",
+	"lspServers": {
+		"biome": {
+			"command": "${CLAUDE_PLUGIN_ROOT}/scripts/launch-biome-lsp.sh",
+			"args": ["lsp-proxy"],
+			"extensionToLanguage": {
+				".js": "javascript",
+				".jsx": "javascriptreact",
+				".mjs": "javascript",
+				".cjs": "javascript",
+				".ts": "typescript",
+				".tsx": "typescriptreact",
+				".mts": "typescript",
+				".cts": "typescript",
+				".json": "json",
+				".jsonc": "jsonc",
+				".css": "css",
+				".graphql": "graphql",
+				".gql": "graphql"
+			}
+		},
+		"vscode-html": {
+			"command": "${CLAUDE_PLUGIN_ROOT}/scripts/launch-vscode-html-lsp.sh",
+			"args": ["--stdio"],
+			"extensionToLanguage": {
+				".html": "html",
+				".htm": "html"
+			}
+		},
+		"bash": {
+			"command": "${CLAUDE_PLUGIN_ROOT}/scripts/launch-bash-lsp.sh",
+			"args": ["start"],
+			"extensionToLanguage": {
+				".sh": "shellscript",
+				".bash": "shellscript"
+			}
+		},
+		"basedpyright": {
+			"command": "${CLAUDE_PLUGIN_ROOT}/scripts/launch-basedpyright-lsp.sh",
+			"args": ["--stdio"],
+			"extensionToLanguage": {
+				".py": "python",
+				".pyi": "python"
+			}
+		},
+		"tombi": {
+			"command": "${CLAUDE_PLUGIN_ROOT}/scripts/launch-tombi-lsp.sh",
+			"args": ["lsp"],
+			"extensionToLanguage": {
+				".toml": "toml"
+			}
+		},
+		"yaml": {
+			"command": "${CLAUDE_PLUGIN_ROOT}/scripts/launch-yaml-lsp.sh",
+			"args": ["--stdio"],
+			"extensionToLanguage": {
+				".yaml": "yaml",
+				".yml": "yaml"
+			}
+		}
+	}
+}

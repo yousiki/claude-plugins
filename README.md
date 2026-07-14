@@ -8,7 +8,7 @@ Language servers, MCP servers, formatter hooks, and room for future plugin kinds
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-plugin%20marketplace-6B4FBB)](https://docs.claude.com/en/docs/claude-code)
-[![Plugins](https://img.shields.io/badge/plugins-14-brightgreen)](#plugins)
+[![Plugins](https://img.shields.io/badge/plugins-15-brightgreen)](#plugins)
 [![Maintenance](https://img.shields.io/badge/status-active-success)](#)
 
 [Install](#install) &nbsp;·&nbsp; [Plugins](#plugins) &nbsp;·&nbsp; [Design](#design) &nbsp;·&nbsp; [Layout](#repository-layout) &nbsp;·&nbsp; [Contributing](#contributing)
@@ -21,13 +21,13 @@ Language servers, MCP servers, formatter hooks, and room for future plugin kinds
 
 - **No global installs required.** Each plugin launches through a runtime fallback chain &mdash; JS/TS via `bunx` → `pnpm dlx` → `npx`, Python via `uvx` → `pipx run`. You only need one runtime from each chain on `PATH`.
 - **On-demand resolution.** Packages resolve from the registry at launch time, so there are no pinned global binaries to keep up to date.
-- **Broad plugin coverage.** Current plugins span language servers, MCP servers, and `PostToolUse` formatter hooks; the marketplace is structured to add future Claude Code plugin kinds such as slash commands and agents.
+- **Broad plugin coverage.** Current plugins span language servers, MCP servers, `PostToolUse` formatter hooks, and an all-in-one bundle (`languages-pack`); the marketplace is structured to add future Claude Code plugin kinds such as slash commands and agents.
 - **Metadata-only folders.** One folder per plugin &mdash; no vendored binaries, no submodules.
 - **Personal scope.** These are the tools I reach for; expect the roster to drift as my own workflow changes.
 
 ## Plugins
 
-Grouped by current [plugin kind](https://docs.claude.com/en/docs/claude-code/plugins). The roster is 14 plugins across language servers, MCP servers, and formatter hooks; future categories can be added when they become useful. All plugins live under [`plugins/`](plugins/) and are registered in [`.claude-plugin/marketplace.json`](.claude-plugin/marketplace.json).
+Grouped by current [plugin kind](https://docs.claude.com/en/docs/claude-code/plugins). The roster is 15 plugins across language servers, MCP servers, formatter hooks, and one all-in-one bundle; future categories can be added when they become useful. All plugins live under [`plugins/`](plugins/) and are registered in [`.claude-plugin/marketplace.json`](.claude-plugin/marketplace.json).
 
 ### Language Servers (9)
 
@@ -59,6 +59,12 @@ Auto-format on `PostToolUse` of `Write` / `Edit` / `MultiEdit`. `biome-formatter
 | [`ruff-formatter`](plugins/ruff-formatter) | `.py` | Python |
 | [`biome-formatter`](plugins/biome-formatter) | `.js`, `.jsx`, `.ts`, `.tsx`, `.json`, `.jsonc` | JS/TS |
 | [`prettier-formatter`](plugins/prettier-formatter) | `.css`, `.scss`, `.less`, `.html`, `.htm`, `.md`, `.mdx`, `.yaml`, `.yml` | JS/TS |
+
+### Bundles (1)
+
+| Plugin | Combines | Notes |
+| --- | --- | --- |
+| [`languages-pack`](plugins/languages-pack) | `biome-lsp` + `vscode-html-lsp` + `bash-lsp` + `basedpyright-lsp` + `tombi-lsp` + `yaml-lsp` + `ruff-formatter` + `biome-formatter` + `prettier-formatter` | One install for broad multi-language LSP + formatter coverage. Picks Biome over `typescript-lsp`/`vscode-css-lsp`/`vscode-json-lsp` to keep every extension owned by exactly one server &mdash; don't install both this and its standalone equivalents |
 
 > Additional plugin kinds (slash commands, agents, specialized hooks) may be added as I start using them.
 

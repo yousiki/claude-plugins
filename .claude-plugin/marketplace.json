@@ -62,6 +62,37 @@
 			"category": "development"
 		},
 		{
+			"name": "languages-pack",
+			"source": "./plugins/languages-pack",
+			"description": "All-in-one bundle of this marketplace's non-overlapping language servers (biome, vscode-html, bash, basedpyright, tombi, yaml) and formatter hooks (biome, prettier, ruff). One install for broad multi-language coverage.",
+			"version": "0.1.0",
+			"category": "development",
+			"hooks": {
+				"PostToolUse": [
+					{
+						"matcher": "Write|Edit|MultiEdit",
+						"hooks": [
+							{
+								"type": "command",
+								"command": "${CLAUDE_PLUGIN_ROOT}/scripts/biome-format-hook.sh",
+								"timeout": 30
+							},
+							{
+								"type": "command",
+								"command": "${CLAUDE_PLUGIN_ROOT}/scripts/prettier-format-hook.sh",
+								"timeout": 30
+							},
+							{
+								"type": "command",
+								"command": "${CLAUDE_PLUGIN_ROOT}/scripts/ruff-format-hook.sh",
+								"timeout": 30
+							}
+						]
+					}
+				]
+			}
+		},
+		{
 			"name": "prettier-formatter",
 			"source": "./plugins/prettier-formatter",
 			"description": "Auto-format CSS / HTML / Markdown / YAML with Prettier after Claude writes them. PostToolUse hook; bunx / pnpm dlx / npx fallback. Pairs with biome-formatter, which covers JS/TS/JSON.",
