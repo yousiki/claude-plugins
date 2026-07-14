@@ -2,13 +2,7 @@
 
 [Tombi](https://github.com/tombi-toml/tombi) language server, packaged for Claude Code.
 
-Tombi provides TOML diagnostics, completion, hover, and schema-aware editing without requiring a system Rust toolchain. It is distributed through PyPI, so this plugin launches it through the same Python runtime chain used by the Phase 1 Python tools.
-
-## Why Tombi
-
-Taplo is the TOML language server many users already know, but the npm `@taplo/cli` package does not ship the LSP. The Taplo language server is available from the native Rust binary built with LSP features, which is not a good fresh-exec dependency for this marketplace.
-
-Tombi gives Claude Code TOML coverage without adding new launcher infrastructure.
+Tombi provides TOML diagnostics, completion, hover, and schema-aware editing without requiring a system Rust toolchain. It is distributed through PyPI, so this plugin launches it through the Python runtime chain.
 
 ## Runtime
 

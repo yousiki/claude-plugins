@@ -1,6 +1,10 @@
 # prettier-formatter
 
-A PostToolUse hook that runs Prettier on common JS, TS, JSON, CSS, HTML, Markdown, MDX, and YAML files Claude touches via `Write`, `Edit`, or `MultiEdit`.
+A PostToolUse hook that runs Prettier on CSS, SCSS, Less, HTML, Markdown, MDX, and YAML files Claude touches via `Write`, `Edit`, or `MultiEdit`.
+
+## Coverage
+
+JS, TS, and JSON are formatted by [`biome-formatter`](../biome-formatter) instead. This plugin covers the extensions Biome doesn't format: CSS/SCSS/Less, HTML, Markdown/MDX, and YAML. Together the two plugins format every extension below with no overlap.
 
 ## Runtime
 
@@ -21,24 +25,14 @@ If none is present, the hook logs a one-line skip warning and exits cleanly.
 ## What it does
 
 - After any `Write | Edit | MultiEdit`, the hook inspects the tool input.
-- If the written file matches Prettier's listed core extensions, it runs `prettier --write -- <file>` in place.
-- Any other extension exits silently.
+- If the written file ends in `.css`, `.scss`, `.less`, `.html`, `.htm`, `.md`, `.markdown`, `.mdx`, `.yaml`, or `.yml`, it runs `prettier --write -- <file>` in place.
+- Any other extension exits silently (including `.js`/`.ts`/`.json`, which `biome-formatter` owns).
 - Prettier discovers project configuration and ignore files through its normal rules.
 
 ## Coexistence
 
-Supported:
-
-- `prettier-formatter` alone when Prettier should own every listed extension.
-- Prettier subset plugins alone when you want only selected languages.
-- Cross-tool subsets with disjoint extensions, such as `biome-json-formatter` + `prettier-yaml-formatter`.
-
-Unsupported:
-
-- `prettier-formatter` plus a Prettier subset, because both hooks can write the same file.
-- Two formatter subsets covering the same extension, such as `biome-json-formatter` + `prettier-json-formatter`.
-
-The hook does not detect these races; uninstall one overlapping formatter instead.
+- Install alongside `biome-formatter` for full-coverage formatting with no overlap.
+- Do not install another formatter hook that also claims `.css`, `.html`, `.md`, or `.yaml` — two hooks can race on the same file since `PostToolUse` hooks may run in parallel.
 
 ## Files
 
@@ -52,4 +46,4 @@ Runtime configuration (the `hooks` block) belongs in the root `.claude-plugin/ma
 
 Feed a hook event containing a matching `tool_input.file_path` into `scripts/prettier-format-hook.sh`.
 The file should be rewritten by Prettier when one runtime is installed.
-Out-of-scope files should produce no output and exit 0.
+Out-of-scope files (including `.js`/`.ts`/`.json`) should produce no output and exit 0.

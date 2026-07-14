@@ -1,8 +1,0 @@
-{
-  "name": "<plugin-name>",
-  "version": "0.1.0",
-  "description": "<one-line description>",
-  "author": { "name": "yousiki" },
-  "homepage": "https://github.com/yousiki/claude-plugins/tree/main/plugins/<plugin-name>",
-  "license": "MIT"
-}

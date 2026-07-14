@@ -1,7 +1,7 @@
 {
   "name": "prettier-formatter",
   "version": "0.1.0",
-  "description": "Auto-format JavaScript, TypeScript, JSON, CSS, HTML, Markdown, MDX, and YAML files with Prettier after Claude writes them via a PostToolUse hook.",
+  "description": "Auto-format CSS, HTML, Markdown, MDX, and YAML files with Prettier after Claude writes them via a PostToolUse hook. Complements biome-formatter, which owns JS/TS/JSON.",
   "author": { "name": "yousiki" },
   "homepage": "https://github.com/yousiki/claude-plugins/tree/main/plugins/prettier-formatter",
   "license": "MIT"

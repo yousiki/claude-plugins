@@ -1,5 +1,7 @@
 #!/usr/bin/env sh
-# PostToolUse hook: reformat Prettier-supported files after Write / Edit / MultiEdit.
+# PostToolUse hook: reformat CSS, HTML, Markdown, and YAML files after Write / Edit / MultiEdit.
+# JS/TS/JSON are owned by biome-formatter; this hook covers the extensions Biome
+# doesn't format stably yet (see plugins/biome-formatter/README.md).
 # Contract:
 #   - input: Claude Code hook event JSON on stdin.
 #   - output: never blocks the turn. Exits 0 in all paths.
@@ -33,7 +35,7 @@ FILE=$(extract_file_path || true)
 [ -f "$FILE" ] || exit 0
 
 case "$FILE" in
-  *.js | *.mjs | *.cjs | *.jsx | *.ts | *.mts | *.cts | *.tsx | *.json | *.json5 | *.jsonc | *.css | *.scss | *.less | *.html | *.htm | *.md | *.markdown | *.mdx | *.yaml | *.yml) ;;
+  *.css | *.scss | *.less | *.html | *.htm | *.md | *.markdown | *.mdx | *.yaml | *.yml) ;;
   *) exit 0 ;;
 esac
 

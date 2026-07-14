@@ -6,13 +6,6 @@
 	},
 	"plugins": [
 		{
-			"name": "apple-events",
-			"source": "./plugins/apple-events",
-			"description": "Native macOS Reminders and Calendar integration via EventKit (FradSer/mcp-server-apple-events). npx-launched; macOS + Node 18+ + Xcode CLT required.",
-			"version": "0.1.0",
-			"category": "development"
-		},
-		{
 			"name": "basedpyright-lsp",
 			"source": "./plugins/basedpyright-lsp",
 			"description": "Basedpyright Python language server (stricter pyright fork). uvx / pipx run fallback.",
@@ -29,7 +22,7 @@
 		{
 			"name": "biome-formatter",
 			"source": "./plugins/biome-formatter",
-			"description": "Auto-format JS / TS / JSON with Biome after Claude writes them. Monolith PostToolUse hook; bunx / pnpm dlx / npx fallback.",
+			"description": "Auto-format JS / TS / JSON with Biome after Claude writes them. PostToolUse hook; bunx / pnpm dlx / npx fallback. Pairs with prettier-formatter, which covers CSS/HTML/Markdown/YAML.",
 			"version": "0.1.1",
 			"category": "development",
 			"hooks": {
@@ -40,48 +33,6 @@
 							{
 								"type": "command",
 								"command": "${CLAUDE_PLUGIN_ROOT}/scripts/biome-format-hook.sh",
-								"timeout": 30
-							}
-						]
-					}
-				]
-			}
-		},
-		{
-			"name": "biome-js-formatter",
-			"source": "./plugins/biome-js-formatter",
-			"description": "Auto-format JS / TS only with Biome after Claude writes them. PostToolUse hook; bunx / pnpm dlx / npx fallback.",
-			"version": "0.1.1",
-			"category": "development",
-			"hooks": {
-				"PostToolUse": [
-					{
-						"matcher": "Write|Edit|MultiEdit",
-						"hooks": [
-							{
-								"type": "command",
-								"command": "${CLAUDE_PLUGIN_ROOT}/scripts/biome-js-format-hook.sh",
-								"timeout": 30
-							}
-						]
-					}
-				]
-			}
-		},
-		{
-			"name": "biome-json-formatter",
-			"source": "./plugins/biome-json-formatter",
-			"description": "Auto-format JSON / JSONC only with Biome after Claude writes them. PostToolUse hook; bunx / pnpm dlx / npx fallback.",
-			"version": "0.1.1",
-			"category": "development",
-			"hooks": {
-				"PostToolUse": [
-					{
-						"matcher": "Write|Edit|MultiEdit",
-						"hooks": [
-							{
-								"type": "command",
-								"command": "${CLAUDE_PLUGIN_ROOT}/scripts/biome-json-format-hook.sh",
 								"timeout": 30
 							}
 						]
@@ -118,30 +69,9 @@
 			"category": "development"
 		},
 		{
-			"name": "prettier-css-formatter",
-			"source": "./plugins/prettier-css-formatter",
-			"description": "Auto-format CSS / SCSS / Less with Prettier after Claude writes them. PostToolUse hook; bunx / pnpm dlx / npx fallback.",
-			"version": "0.1.0",
-			"category": "development",
-			"hooks": {
-				"PostToolUse": [
-					{
-						"matcher": "Write|Edit|MultiEdit",
-						"hooks": [
-							{
-								"type": "command",
-								"command": "${CLAUDE_PLUGIN_ROOT}/scripts/prettier-css-format-hook.sh",
-								"timeout": 30
-							}
-						]
-					}
-				]
-			}
-		},
-		{
 			"name": "prettier-formatter",
 			"source": "./plugins/prettier-formatter",
-			"description": "Auto-format JS / TS / JSON / CSS / HTML / Markdown / YAML with Prettier after Claude writes them. Monolith PostToolUse hook; bunx / pnpm dlx / npx fallback.",
+			"description": "Auto-format CSS / HTML / Markdown / YAML with Prettier after Claude writes them. PostToolUse hook; bunx / pnpm dlx / npx fallback. Pairs with biome-formatter, which covers JS/TS/JSON.",
 			"version": "0.1.0",
 			"category": "development",
 			"hooks": {
@@ -158,118 +88,6 @@
 					}
 				]
 			}
-		},
-		{
-			"name": "prettier-html-formatter",
-			"source": "./plugins/prettier-html-formatter",
-			"description": "Auto-format HTML with Prettier after Claude writes them. PostToolUse hook; bunx / pnpm dlx / npx fallback.",
-			"version": "0.1.0",
-			"category": "development",
-			"hooks": {
-				"PostToolUse": [
-					{
-						"matcher": "Write|Edit|MultiEdit",
-						"hooks": [
-							{
-								"type": "command",
-								"command": "${CLAUDE_PLUGIN_ROOT}/scripts/prettier-html-format-hook.sh",
-								"timeout": 30
-							}
-						]
-					}
-				]
-			}
-		},
-		{
-			"name": "prettier-js-formatter",
-			"source": "./plugins/prettier-js-formatter",
-			"description": "Auto-format JS / TS with Prettier after Claude writes them. PostToolUse hook; bunx / pnpm dlx / npx fallback.",
-			"version": "0.1.0",
-			"category": "development",
-			"hooks": {
-				"PostToolUse": [
-					{
-						"matcher": "Write|Edit|MultiEdit",
-						"hooks": [
-							{
-								"type": "command",
-								"command": "${CLAUDE_PLUGIN_ROOT}/scripts/prettier-js-format-hook.sh",
-								"timeout": 30
-							}
-						]
-					}
-				]
-			}
-		},
-		{
-			"name": "prettier-json-formatter",
-			"source": "./plugins/prettier-json-formatter",
-			"description": "Auto-format JSON / JSON5 / JSONC with Prettier after Claude writes them. PostToolUse hook; bunx / pnpm dlx / npx fallback.",
-			"version": "0.1.0",
-			"category": "development",
-			"hooks": {
-				"PostToolUse": [
-					{
-						"matcher": "Write|Edit|MultiEdit",
-						"hooks": [
-							{
-								"type": "command",
-								"command": "${CLAUDE_PLUGIN_ROOT}/scripts/prettier-json-format-hook.sh",
-								"timeout": 30
-							}
-						]
-					}
-				]
-			}
-		},
-		{
-			"name": "prettier-markdown-formatter",
-			"source": "./plugins/prettier-markdown-formatter",
-			"description": "Auto-format Markdown / MDX with Prettier after Claude writes them. PostToolUse hook; bunx / pnpm dlx / npx fallback.",
-			"version": "0.1.0",
-			"category": "development",
-			"hooks": {
-				"PostToolUse": [
-					{
-						"matcher": "Write|Edit|MultiEdit",
-						"hooks": [
-							{
-								"type": "command",
-								"command": "${CLAUDE_PLUGIN_ROOT}/scripts/prettier-markdown-format-hook.sh",
-								"timeout": 30
-							}
-						]
-					}
-				]
-			}
-		},
-		{
-			"name": "prettier-yaml-formatter",
-			"source": "./plugins/prettier-yaml-formatter",
-			"description": "Auto-format YAML with Prettier after Claude writes them. PostToolUse hook; bunx / pnpm dlx / npx fallback.",
-			"version": "0.1.0",
-			"category": "development",
-			"hooks": {
-				"PostToolUse": [
-					{
-						"matcher": "Write|Edit|MultiEdit",
-						"hooks": [
-							{
-								"type": "command",
-								"command": "${CLAUDE_PLUGIN_ROOT}/scripts/prettier-yaml-format-hook.sh",
-								"timeout": 30
-							}
-						]
-					}
-				]
-			}
-		},
-		{
-			"name": "pyright-lsp",
-			"source": "./plugins/pyright-lsp",
-			"description": "Microsoft Pyright Python language server. Routed through the JS/TS chain because pyright is npm-first.",
-			"version": "0.1.2",
-			"category": "development"
 		},
 		{
 			"name": "ruff-formatter",
@@ -297,13 +115,6 @@
 			"source": "./plugins/tombi-lsp",
 			"description": "Tombi TOML language server (schema-aware; Helix uses it by default). uvx / pipx run fallback.",
 			"version": "0.1.2",
-			"category": "development"
-		},
-		{
-			"name": "ty-lsp",
-			"source": "./plugins/ty-lsp",
-			"description": "Astral ty (Rust-based Python type checker) as an LSP. BETA — pre-1.0, breaking changes ship between patch releases.",
-			"version": "0.1.1",
 			"category": "development"
 		},
 		{
@@ -340,37 +151,6 @@
 			"description": "yaml-language-server with built-in schema catalog (GitHub Actions, Kubernetes, docker-compose). bunx / pnpm dlx / npx fallback.",
 			"version": "0.1.2",
 			"category": "development"
-		},
-		{
-			"name": "tokscale-auto-submit",
-			"source": "./plugins/tokscale-auto-submit",
-			"description": "Auto-submit tokscale usage stats (Claude Code + Codex CLI) on every SessionStart and SessionEnd. Detached via nohup so the session never waits on it.",
-			"version": "0.1.0",
-			"category": "development",
-			"hooks": {
-				"SessionStart": [
-					{
-						"hooks": [
-							{
-								"type": "command",
-								"command": "${CLAUDE_PLUGIN_ROOT}/scripts/submit-hook.sh",
-								"timeout": 10
-							}
-						]
-					}
-				],
-				"SessionEnd": [
-					{
-						"hooks": [
-							{
-								"type": "command",
-								"command": "${CLAUDE_PLUGIN_ROOT}/scripts/submit-hook.sh",
-								"timeout": 10
-							}
-						]
-					}
-				]
-			}
 		}
 	]
 }

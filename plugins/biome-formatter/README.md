@@ -26,18 +26,9 @@ If none is present, the hook logs a one-line skip warning and exits cleanly; the
 
 ## Coexistence
 
-Supported installation modes:
-
-- `biome-formatter` alone, as the monolith for all Biome-owned JS, TS, JSON, and JSONC files.
-- Subset formatters alone, such as `biome-js-formatter` or `biome-json-formatter`, when you want narrower Biome ownership.
-- Cross-tool subsets with disjoint extensions, such as `biome-js-formatter` plus `ruff-formatter`.
-
-Unsupported modes:
-
-- `biome-formatter` plus a same-tool subset such as `biome-js-formatter` or `biome-json-formatter`.
-- Two formatter subsets that both claim the same extension.
-
-Those unsupported combinations can race because PostToolUse hooks may run in parallel. The hook does not try to detect that race.
+- Install alongside [`prettier-formatter`](../prettier-formatter), which covers CSS, HTML, Markdown, and YAML — the extensions Biome doesn't format stably yet. The two plugins claim disjoint extensions.
+- Install alongside `ruff-formatter` for Python; extensions don't overlap.
+- Do not install another formatter hook that also claims `.js`/`.ts`/`.json`/`.jsonc` — two hooks can race on the same file since `PostToolUse` hooks may run in parallel. The hook does not try to detect that race.
 
 ## Files
 

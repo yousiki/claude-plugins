@@ -8,7 +8,7 @@ Language servers, MCP servers, formatter hooks, and room for future plugin kinds
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-plugin%20marketplace-6B4FBB)](https://docs.claude.com/en/docs/claude-code)
-[![Plugins](https://img.shields.io/badge/plugins-26-brightgreen)](#plugins)
+[![Plugins](https://img.shields.io/badge/plugins-15-brightgreen)](#plugins)
 [![Maintenance](https://img.shields.io/badge/status-active-success)](#)
 
 [Install](#install) &nbsp;·&nbsp; [Plugins](#plugins) &nbsp;·&nbsp; [Design](#design) &nbsp;·&nbsp; [Layout](#repository-layout) &nbsp;·&nbsp; [Contributing](#contributing)
@@ -27,50 +27,39 @@ Language servers, MCP servers, formatter hooks, and room for future plugin kinds
 
 ## Plugins
 
-Grouped by current [plugin kind](https://docs.claude.com/en/docs/claude-code/plugins). The roster is 26 plugins across language servers, MCP servers, and formatter hooks; future categories can be added when they become useful. All plugins live under [`plugins/`](plugins/) and are registered in [`.claude-plugin/marketplace.json`](.claude-plugin/marketplace.json).
+Grouped by current [plugin kind](https://docs.claude.com/en/docs/claude-code/plugins). The roster is 15 plugins across language servers, MCP servers, and formatter hooks; future categories can be added when they become useful. All plugins live under [`plugins/`](plugins/) and are registered in [`.claude-plugin/marketplace.json`](.claude-plugin/marketplace.json).
 
-### Language Servers (11)
+### Language Servers (9)
 
 | Plugin | Language | Runtime chain | Notes |
 | --- | --- | --- | --- |
 | [`typescript-lsp`](plugins/typescript-lsp) | TypeScript, JavaScript | JS/TS | `typescript-language-server`, pulls the `typescript` peer dep fresh |
-| [`pyright-lsp`](plugins/pyright-lsp) | Python | JS/TS | Microsoft Pyright (npm-distributed) |
 | [`basedpyright-lsp`](plugins/basedpyright-lsp) | Python | Python | Stricter community fork of Pyright |
-| [`ty-lsp`](plugins/ty-lsp) | Python _(beta)_ | Python | Astral's Rust-based type checker; pre-1.0, expect churn |
 | [`biome-lsp`](plugins/biome-lsp) | JS, TS, JSON | JS/TS | Biome language server (lint + format diagnostics) |
 | [`bash-lsp`](plugins/bash-lsp) | Bash, shell | JS/TS | `bash-language-server`; integrates with `shellcheck` when on `PATH` |
 | [`yaml-lsp`](plugins/yaml-lsp) | YAML | JS/TS | Red Hat `yaml-language-server` |
-| [`tombi-lsp`](plugins/tombi-lsp) | TOML | Python | `tombi` LSP (chose over Taplo &mdash; Taplo's npm pkg lacks the LSP subcommand) |
+| [`tombi-lsp`](plugins/tombi-lsp) | TOML | Python | `tombi` LSP; schema-aware for `pyproject.toml`, `Cargo.toml`, and similar files |
 | [`vscode-html-lsp`](plugins/vscode-html-lsp) | HTML | JS/TS | `vscode-langservers-extracted` (HTML binary) |
 | [`vscode-css-lsp`](plugins/vscode-css-lsp) | CSS, SCSS, LESS | JS/TS | `vscode-langservers-extracted` (CSS binary) |
 | [`vscode-json-lsp`](plugins/vscode-json-lsp) | JSON, JSONC | JS/TS | `vscode-langservers-extracted` (JSON binary) |
 
-### MCP Servers (4)
+### MCP Servers (3)
 
 | Plugin | Purpose | Transport |
 | --- | --- | --- |
-| [`apple-events`](plugins/apple-events) | Native macOS Reminders and Calendar via EventKit ([FradSer/mcp-server-apple-events](https://github.com/FradSer/mcp-server-apple-events)) | Local stdio |
 | [`browseros`](plugins/browseros) | Drive the local [BrowserOS](https://www.browseros.com/) agentic browser (53 browser tools + 40+ app integrations) | Local HTTP |
 | [`context7`](plugins/context7) | Up-to-date library documentation lookup (Upstash Context7) | Remote HTTP |
 | [`deepwiki`](plugins/deepwiki) | AI-grounded Q&A over any public GitHub repo's wiki (Devin DeepWiki) | Remote HTTP |
 
-### Hooks &mdash; Formatters (11)
+### Hooks &mdash; Formatters (3)
 
-Auto-format on `PostToolUse` of `Write` / `Edit` / `MultiEdit`. Subset variants exist so you can pick only the languages you want formatted.
+Auto-format on `PostToolUse` of `Write` / `Edit` / `MultiEdit`. `biome-formatter` and `prettier-formatter` split JS/TS/JSON/CSS/HTML/Markdown/YAML coverage by which tool formats that language best today &mdash; see [Design](#design).
 
 | Plugin | Files formatted | Runtime chain |
 | --- | --- | --- |
 | [`ruff-formatter`](plugins/ruff-formatter) | `.py` | Python |
 | [`biome-formatter`](plugins/biome-formatter) | `.js`, `.jsx`, `.ts`, `.tsx`, `.json`, `.jsonc` | JS/TS |
-| [`biome-js-formatter`](plugins/biome-js-formatter) | `.js`, `.jsx`, `.ts`, `.tsx` | JS/TS |
-| [`biome-json-formatter`](plugins/biome-json-formatter) | `.json`, `.jsonc` | JS/TS |
-| [`prettier-formatter`](plugins/prettier-formatter) | All prettier-supported extensions | JS/TS |
-| [`prettier-js-formatter`](plugins/prettier-js-formatter) | `.js`, `.jsx`, `.ts`, `.tsx` | JS/TS |
-| [`prettier-json-formatter`](plugins/prettier-json-formatter) | `.json` | JS/TS |
-| [`prettier-css-formatter`](plugins/prettier-css-formatter) | `.css`, `.scss`, `.less` | JS/TS |
-| [`prettier-html-formatter`](plugins/prettier-html-formatter) | `.html`, `.htm` | JS/TS |
-| [`prettier-markdown-formatter`](plugins/prettier-markdown-formatter) | `.md`, `.mdx` | JS/TS |
-| [`prettier-yaml-formatter`](plugins/prettier-yaml-formatter) | `.yaml`, `.yml` | JS/TS |
+| [`prettier-formatter`](plugins/prettier-formatter) | `.css`, `.scss`, `.less`, `.html`, `.htm`, `.md`, `.mdx`, `.yaml`, `.yml` | JS/TS |
 
 > Additional plugin kinds (slash commands, agents, specialized hooks) may be added as I start using them.
 
@@ -94,11 +83,12 @@ Each plugin's folder lists the runtime candidates it probes &mdash; at least one
 
 ## Design
 
-Three rules shared by plugin categories in this marketplace:
+Rules shared by plugin categories in this marketplace:
 
 1. **No global installs.** The launcher script probes a runtime chain and runs the tool on demand. Missing one runtime is fine; missing all of them fails loudly with a clear error.
-2. **Fallback by _distribution_ ecosystem, not by _language_ ecosystem.** Pyright is a Python tool but ships on npm &mdash; so it routes through the JS/TS chain. Basedpyright ships on PyPI &mdash; so it uses the Python chain.
+2. **Fallback by _distribution_ ecosystem, not by _language_ ecosystem.** `typescript-language-server` ships on npm &mdash; so it routes through the JS/TS chain. Basedpyright ships on PyPI &mdash; so it uses the Python chain.
 3. **Metadata-only plugin folders.** `plugin.json` wires the launcher path; the launcher resolves the binary. Nothing is vendored, nothing is pinned beyond the tool's own versioning.
+4. **One tool per language.** Where two tools could format or check the same file type, only one is kept, to avoid conflicting or racing hooks. Example: `biome-formatter` owns JS/TS/JSON, while `prettier-formatter` owns CSS/HTML/Markdown/YAML.
 
 Formatter hooks additionally follow a **graceful-miss** contract: if no runtime on the fallback chain is present, the hook exits `0` silently rather than blocking the write. This is intentional &mdash; a missing formatter shouldn't break the edit flow.
 
@@ -115,22 +105,18 @@ Formatter hooks additionally follow a **graceful-miss** contract: if no runtime 
 │       ├── scripts/
 │       │   └── launch-<name>.sh  # runtime fallback wrapper
 │       └── README.md
-├── templates/                    # copy-paste scaffolds (not executable)
-│   ├── js-ts-tool-plugin/
-│   ├── python-tool-plugin/
-│   └── formatter-hook-plugin/
 ├── LICENSE
 └── README.md
 ```
 
 ## Contributing
 
-This marketplace is primarily for my own use, and I don't promise any particular support level &mdash; but the scaffolding is deliberately general, so feel free to fork and adapt, or open an issue / PR if you spot something broken.
+This marketplace is primarily for my own use, and I don't promise any particular support level &mdash; but feel free to fork and adapt, or open an issue / PR if you spot something broken.
 
 To add a new plugin:
 
-1. **Pick the runtime chain** based on how the tool is _distributed_, not what it analyzes. Rule of thumb: if it ships on npm (like Pyright), use the JS/TS chain; if it ships on PyPI (like Basedpyright), use the Python chain.
-2. **Copy the matching template** from [`templates/`](templates/) into `plugins/<name>/` and replace every `<placeholder>` with the concrete value. Formatter hooks start from [`templates/formatter-hook-plugin/`](templates/formatter-hook-plugin/).
+1. **Pick the runtime chain** based on how the tool is _distributed_, not what it analyzes. Rule of thumb: if it ships on npm, use the JS/TS chain; if it ships on PyPI, use the Python chain.
+2. **Create `plugins/<name>/`** with a `.claude-plugin/plugin.json`, a `scripts/launch-<name>.sh` runtime-fallback wrapper (or a formatter hook script), and a `README.md`. Use an existing plugin of the same kind as a reference &mdash; each one differs enough in specifics that a generic scaffold isn't worth maintaining.
 3. **Register the plugin** by appending an entry to [`.claude-plugin/marketplace.json`](.claude-plugin/marketplace.json).
 4. **Sanity-check the launcher** by invoking it directly &mdash; and, if you want to confirm the fallback works, try unsetting each runtime in turn (`PATH` manipulation works) and check the launcher still resolves with any single one present.
 

@@ -2,13 +2,11 @@
 
 [Basedpyright](https://github.com/DetachHead/basedpyright) language server, packaged for Claude Code.
 
-Basedpyright is a community fork of Pyright with stricter defaults and extra diagnostics. Pick this over `pyright-lsp` when you want:
+Basedpyright is a community fork of Microsoft's Pyright with stricter defaults and extra diagnostics enabled out of the box:
 
 - stricter type narrowing / catch more bugs out of the box
 - `reportUnreachable`, `reportImplicitStringConcatenation`, and similar opt-in-in-pyright rules enabled by default
 - features that haven't yet been upstreamed into Microsoft pyright
-
-You can install both `pyright-lsp` and `basedpyright-lsp`; Claude Code will only run whichever you enable per-project.
 
 ## Runtime
 
