@@ -8,7 +8,7 @@ Language servers, MCP servers, formatter hooks, and room for future plugin kinds
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-plugin%20marketplace-6B4FBB)](https://docs.claude.com/en/docs/claude-code)
-[![Plugins](https://img.shields.io/badge/plugins-15-brightgreen)](#plugins)
+[![Plugins](https://img.shields.io/badge/plugins-14-brightgreen)](#plugins)
 [![Maintenance](https://img.shields.io/badge/status-active-success)](#)
 
 [Install](#install) &nbsp;·&nbsp; [Plugins](#plugins) &nbsp;·&nbsp; [Design](#design) &nbsp;·&nbsp; [Layout](#repository-layout) &nbsp;·&nbsp; [Contributing](#contributing)
@@ -27,7 +27,7 @@ Language servers, MCP servers, formatter hooks, and room for future plugin kinds
 
 ## Plugins
 
-Grouped by current [plugin kind](https://docs.claude.com/en/docs/claude-code/plugins). The roster is 15 plugins across language servers, MCP servers, and formatter hooks; future categories can be added when they become useful. All plugins live under [`plugins/`](plugins/) and are registered in [`.claude-plugin/marketplace.json`](.claude-plugin/marketplace.json).
+Grouped by current [plugin kind](https://docs.claude.com/en/docs/claude-code/plugins). The roster is 14 plugins across language servers, MCP servers, and formatter hooks; future categories can be added when they become useful. All plugins live under [`plugins/`](plugins/) and are registered in [`.claude-plugin/marketplace.json`](.claude-plugin/marketplace.json).
 
 ### Language Servers (9)
 
@@ -43,11 +43,10 @@ Grouped by current [plugin kind](https://docs.claude.com/en/docs/claude-code/plu
 | [`vscode-css-lsp`](plugins/vscode-css-lsp) | CSS, SCSS, LESS | JS/TS | `vscode-langservers-extracted` (CSS binary) |
 | [`vscode-json-lsp`](plugins/vscode-json-lsp) | JSON, JSONC | JS/TS | `vscode-langservers-extracted` (JSON binary) |
 
-### MCP Servers (3)
+### MCP Servers (2)
 
 | Plugin | Purpose | Transport |
 | --- | --- | --- |
-| [`browseros`](plugins/browseros) | Drive the local [BrowserOS](https://www.browseros.com/) agentic browser (53 browser tools + 40+ app integrations) | Local HTTP |
 | [`context7`](plugins/context7) | Up-to-date library documentation lookup (Upstash Context7) | Remote HTTP |
 | [`deepwiki`](plugins/deepwiki) | AI-grounded Q&A over any public GitHub repo's wiki (Devin DeepWiki) | Remote HTTP |
 
