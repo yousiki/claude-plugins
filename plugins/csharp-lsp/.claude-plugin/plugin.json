@@ -1,0 +1,16 @@
+{
+	"name": "csharp-lsp",
+	"version": "0.1.0",
+	"description": "csharp-ls C# language server. Requires the csharp-ls .NET tool on PATH — no npm/PyPI package to fall back through.",
+	"author": { "name": "yousiki" },
+	"homepage": "https://github.com/yousiki/claude-plugins/tree/main/plugins/csharp-lsp",
+	"license": "MIT",
+	"lspServers": {
+		"csharp-ls": {
+			"command": "csharp-ls",
+			"extensionToLanguage": {
+				".cs": "csharp"
+			}
+		}
+	}
+}

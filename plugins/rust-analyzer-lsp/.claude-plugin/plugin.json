@@ -1,0 +1,16 @@
+{
+	"name": "rust-analyzer-lsp",
+	"version": "0.1.0",
+	"description": "rust-analyzer Rust language server. Requires the rust-analyzer binary on PATH — no npm/PyPI package to fall back through.",
+	"author": { "name": "yousiki" },
+	"homepage": "https://github.com/yousiki/claude-plugins/tree/main/plugins/rust-analyzer-lsp",
+	"license": "MIT",
+	"lspServers": {
+		"rust-analyzer": {
+			"command": "rust-analyzer",
+			"extensionToLanguage": {
+				".rs": "rust"
+			}
+		}
+	}
+}

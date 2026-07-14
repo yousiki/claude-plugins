@@ -48,6 +48,13 @@
 			"category": "development"
 		},
 		{
+			"name": "clangd-lsp",
+			"source": "./plugins/clangd-lsp",
+			"description": "clangd C/C++ language server. Requires clangd on PATH — no npm/PyPI package to fall back through.",
+			"version": "0.1.0",
+			"category": "development"
+		},
+		{
 			"name": "context7",
 			"source": "./plugins/context7",
 			"description": "Upstash Context7 MCP server for up-to-date documentation lookup. Remote streamable-HTTP transport at mcp.context7.com — no local runtime, no auth required for the free tier.",
@@ -55,10 +62,38 @@
 			"category": "development"
 		},
 		{
+			"name": "csharp-lsp",
+			"source": "./plugins/csharp-lsp",
+			"description": "csharp-ls C# language server. Requires the csharp-ls .NET tool on PATH — no npm/PyPI package to fall back through.",
+			"version": "0.1.0",
+			"category": "development"
+		},
+		{
 			"name": "deepwiki",
 			"source": "./plugins/deepwiki",
 			"description": "Devin DeepWiki MCP server for AI-grounded Q&A over any public GitHub repository's wiki. Remote HTTP transport, no auth.",
 			"version": "0.1.1",
+			"category": "development"
+		},
+		{
+			"name": "gopls-lsp",
+			"source": "./plugins/gopls-lsp",
+			"description": "gopls Go language server. Requires the gopls binary on PATH — no npm/PyPI package to fall back through.",
+			"version": "0.1.0",
+			"category": "development"
+		},
+		{
+			"name": "jdtls-lsp",
+			"source": "./plugins/jdtls-lsp",
+			"description": "Eclipse JDT.LS Java language server. Requires the jdtls launcher on PATH and a JDK — no npm/PyPI package to fall back through.",
+			"version": "0.1.0",
+			"category": "development"
+		},
+		{
+			"name": "kotlin-lsp",
+			"source": "./plugins/kotlin-lsp",
+			"description": "JetBrains kotlin-lsp Kotlin language server. Requires the kotlin-lsp binary on PATH — no npm/PyPI package to fall back through.",
+			"version": "0.1.0",
 			"category": "development"
 		},
 		{
@@ -93,6 +128,27 @@
 			}
 		},
 		{
+			"name": "liquid-lsp",
+			"source": "./plugins/liquid-lsp",
+			"description": "Shopify Liquid template language server (Shopify CLI `theme language-server`). bunx / pnpm dlx / npx fallback.",
+			"version": "0.1.0",
+			"category": "development"
+		},
+		{
+			"name": "lua-lsp",
+			"source": "./plugins/lua-lsp",
+			"description": "lua-language-server Lua language server. Requires the lua-language-server binary on PATH — no npm/PyPI package to fall back through.",
+			"version": "0.1.0",
+			"category": "development"
+		},
+		{
+			"name": "php-lsp",
+			"source": "./plugins/php-lsp",
+			"description": "Intelephense PHP language server. bunx / pnpm dlx / npx fallback.",
+			"version": "0.1.0",
+			"category": "development"
+		},
+		{
 			"name": "prettier-formatter",
 			"source": "./plugins/prettier-formatter",
 			"description": "Auto-format CSS / HTML / Markdown / YAML with Prettier after Claude writes them. PostToolUse hook; bunx / pnpm dlx / npx fallback. Pairs with biome-formatter, which covers JS/TS/JSON.",
@@ -114,6 +170,13 @@
 			}
 		},
 		{
+			"name": "ruby-lsp",
+			"source": "./plugins/ruby-lsp",
+			"description": "Shopify ruby-lsp Ruby language server. Requires the ruby-lsp gem on PATH — no npm/PyPI package to fall back through.",
+			"version": "0.1.0",
+			"category": "development"
+		},
+		{
 			"name": "ruff-formatter",
 			"source": "./plugins/ruff-formatter",
 			"description": "Auto-format Python files with ruff after Claude writes them. PostToolUse hook; uvx / pipx run fallback.",
@@ -133,6 +196,20 @@
 					}
 				]
 			}
+		},
+		{
+			"name": "rust-analyzer-lsp",
+			"source": "./plugins/rust-analyzer-lsp",
+			"description": "rust-analyzer Rust language server. Requires the rust-analyzer binary on PATH — no npm/PyPI package to fall back through.",
+			"version": "0.1.0",
+			"category": "development"
+		},
+		{
+			"name": "swift-lsp",
+			"source": "./plugins/swift-lsp",
+			"description": "SourceKit-LSP Swift language server. Requires sourcekit-lsp (bundled with a Swift toolchain) on PATH — no npm/PyPI package to fall back through.",
+			"version": "0.1.0",
+			"category": "development"
 		},
 		{
 			"name": "tombi-lsp",

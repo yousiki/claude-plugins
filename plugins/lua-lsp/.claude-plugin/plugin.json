@@ -1,0 +1,16 @@
+{
+	"name": "lua-lsp",
+	"version": "0.1.0",
+	"description": "lua-language-server Lua language server. Requires the lua-language-server binary on PATH — no npm/PyPI package to fall back through.",
+	"author": { "name": "yousiki" },
+	"homepage": "https://github.com/yousiki/claude-plugins/tree/main/plugins/lua-lsp",
+	"license": "MIT",
+	"lspServers": {
+		"lua": {
+			"command": "lua-language-server",
+			"extensionToLanguage": {
+				".lua": "lua"
+			}
+		}
+	}
+}

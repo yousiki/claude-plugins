@@ -1,0 +1,16 @@
+{
+	"name": "swift-lsp",
+	"version": "0.1.0",
+	"description": "SourceKit-LSP Swift language server. Requires the sourcekit-lsp binary bundled with a Swift toolchain on PATH — no npm/PyPI package to fall back through.",
+	"author": { "name": "yousiki" },
+	"homepage": "https://github.com/yousiki/claude-plugins/tree/main/plugins/swift-lsp",
+	"license": "MIT",
+	"lspServers": {
+		"sourcekit-lsp": {
+			"command": "sourcekit-lsp",
+			"extensionToLanguage": {
+				".swift": "swift"
+			}
+		}
+	}
+}

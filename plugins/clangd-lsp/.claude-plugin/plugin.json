@@ -1,0 +1,25 @@
+{
+	"name": "clangd-lsp",
+	"version": "0.1.0",
+	"description": "clangd C/C++ language server. Requires the clangd binary on PATH — no npm/PyPI package to fall back through.",
+	"author": { "name": "yousiki" },
+	"homepage": "https://github.com/yousiki/claude-plugins/tree/main/plugins/clangd-lsp",
+	"license": "MIT",
+	"lspServers": {
+		"clangd": {
+			"command": "clangd",
+			"args": ["--background-index"],
+			"extensionToLanguage": {
+				".c": "c",
+				".h": "c",
+				".cpp": "cpp",
+				".cc": "cpp",
+				".cxx": "cpp",
+				".hpp": "cpp",
+				".hxx": "cpp",
+				".C": "cpp",
+				".H": "cpp"
+			}
+		}
+	}
+}

@@ -4,11 +4,11 @@
 
 **A personal marketplace of [Claude Code](https://docs.claude.com/en/docs/claude-code) plugins.**
 
-Language servers, MCP servers, formatter hooks, and room for future plugin kinds such as slash commands and agents. Tool-backed plugins are wrapped in launchers that probe a runtime fallback chain (`bunx` / `uvx` and friends), so nothing has to be installed globally on the host.
+Language servers, MCP servers, formatter hooks, and room for future plugin kinds such as slash commands and agents. Most tool-backed plugins are wrapped in launchers that probe a runtime fallback chain (`bunx` / `uvx` and friends), so nothing has to be installed globally on the host; a smaller set of language servers with no npm/PyPI distribution invoke their native-toolchain binary directly instead &mdash; see [Design](#design).
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-plugin%20marketplace-6B4FBB)](https://docs.claude.com/en/docs/claude-code)
-[![Plugins](https://img.shields.io/badge/plugins-15-brightgreen)](#plugins)
+[![Plugins](https://img.shields.io/badge/plugins-26-brightgreen)](#plugins)
 [![Maintenance](https://img.shields.io/badge/status-active-success)](#)
 
 [Install](#install) &nbsp;·&nbsp; [Plugins](#plugins) &nbsp;·&nbsp; [Design](#design) &nbsp;·&nbsp; [Layout](#repository-layout) &nbsp;·&nbsp; [Contributing](#contributing)
@@ -19,17 +19,20 @@ Language servers, MCP servers, formatter hooks, and room for future plugin kinds
 
 ## Highlights
 
-- **No global installs required.** Each plugin launches through a runtime fallback chain &mdash; JS/TS via `bunx` → `pnpm dlx` → `npx`, Python via `uvx` → `pipx run`. You only need one runtime from each chain on `PATH`.
+- **No global installs, where the ecosystem allows it.** Most plugins launch through a runtime fallback chain &mdash; JS/TS via `bunx` → `pnpm dlx` → `npx`, Python via `uvx` → `pipx run`. You only need one runtime from each chain on `PATH`.
 - **On-demand resolution.** Packages resolve from the registry at launch time, so there are no pinned global binaries to keep up to date.
+- **Native-toolchain servers, honestly labeled.** A handful of language servers (C/C++, C#, Go, Java, Kotlin, Lua, Ruby, Rust, Swift) have no npm/PyPI package to run on demand &mdash; their plugin invokes the bare binary and expects it already on `PATH`, same as the [official Anthropic plugin directory](https://github.com/anthropics/claude-plugins-official) does for these languages.
 - **Broad plugin coverage.** Current plugins span language servers, MCP servers, `PostToolUse` formatter hooks, and an all-in-one bundle (`languages-pack`); the marketplace is structured to add future Claude Code plugin kinds such as slash commands and agents.
 - **Metadata-only folders.** One folder per plugin &mdash; no vendored binaries, no submodules.
 - **Personal scope.** These are the tools I reach for; expect the roster to drift as my own workflow changes.
 
 ## Plugins
 
-Grouped by current [plugin kind](https://docs.claude.com/en/docs/claude-code/plugins). The roster is 15 plugins across language servers, MCP servers, formatter hooks, and one all-in-one bundle; future categories can be added when they become useful. All plugins live under [`plugins/`](plugins/) and are registered in [`.claude-plugin/marketplace.json`](.claude-plugin/marketplace.json).
+Grouped by current [plugin kind](https://docs.claude.com/en/docs/claude-code/plugins). The roster is 26 plugins across language servers, MCP servers, formatter hooks, and one all-in-one bundle; future categories can be added when they become useful. All plugins live under [`plugins/`](plugins/) and are registered in [`.claude-plugin/marketplace.json`](.claude-plugin/marketplace.json).
 
-### Language Servers (9)
+### Language Servers &mdash; zero-install (11)
+
+Resolve on demand through a runtime fallback chain; nothing to install beyond the runtime.
 
 | Plugin | Language | Runtime chain | Notes |
 | --- | --- | --- | --- |
@@ -42,6 +45,24 @@ Grouped by current [plugin kind](https://docs.claude.com/en/docs/claude-code/plu
 | [`vscode-html-lsp`](plugins/vscode-html-lsp) | HTML | JS/TS | `vscode-langservers-extracted` (HTML binary) |
 | [`vscode-css-lsp`](plugins/vscode-css-lsp) | CSS, SCSS, LESS | JS/TS | `vscode-langservers-extracted` (CSS binary) |
 | [`vscode-json-lsp`](plugins/vscode-json-lsp) | JSON, JSONC | JS/TS | `vscode-langservers-extracted` (JSON binary) |
+| [`php-lsp`](plugins/php-lsp) | PHP | JS/TS | Intelephense, published on npm |
+| [`liquid-lsp`](plugins/liquid-lsp) | Shopify Liquid | JS/TS | Shopify CLI's `theme language-server` subcommand |
+
+### Language Servers &mdash; native toolchain (9)
+
+No npm/PyPI package exists for these, so there's no fallback chain to wrap &mdash; the plugin invokes the bare binary directly, and it must already be on `PATH` (same approach the [official Anthropic plugin directory](https://github.com/anthropics/claude-plugins-official) takes for these languages). See each plugin's README for install instructions.
+
+| Plugin | Language | Command | Notes |
+| --- | --- | --- | --- |
+| [`clangd-lsp`](plugins/clangd-lsp) | C, C++ | `clangd` | LLVM project binary; install via `brew`/`apt`/`dnf` or an LLVM release |
+| [`csharp-lsp`](plugins/csharp-lsp) | C# | `csharp-ls` | .NET global tool: `dotnet tool install --global csharp-ls` |
+| [`gopls-lsp`](plugins/gopls-lsp) | Go | `gopls` | `go install golang.org/x/tools/gopls@latest` |
+| [`jdtls-lsp`](plugins/jdtls-lsp) | Java | `jdtls` | Eclipse JDT.LS; needs a JDK 17+ and a `jdtls` launcher on `PATH` |
+| [`kotlin-lsp`](plugins/kotlin-lsp) | Kotlin | `kotlin-lsp --stdio` | JetBrains' official server; `brew install JetBrains/utils/kotlin-lsp` |
+| [`lua-lsp`](plugins/lua-lsp) | Lua | `lua-language-server` | Native binary via `brew`/`pacman` or a GitHub release |
+| [`ruby-lsp`](plugins/ruby-lsp) | Ruby, ERB | `ruby-lsp` | RubyGem: `gem install ruby-lsp` |
+| [`rust-analyzer-lsp`](plugins/rust-analyzer-lsp) | Rust | `rust-analyzer` | `rustup component add rust-analyzer` |
+| [`swift-lsp`](plugins/swift-lsp) | Swift | `sourcekit-lsp` | Bundled with any Swift toolchain (Xcode or swift.org) |
 
 ### MCP Servers (2)
 
@@ -64,7 +85,7 @@ Auto-format on `PostToolUse` of `Write` / `Edit` / `MultiEdit`. `biome-formatter
 
 | Plugin | Combines | Notes |
 | --- | --- | --- |
-| [`languages-pack`](plugins/languages-pack) | `biome-lsp` + `vscode-html-lsp` + `bash-lsp` + `basedpyright-lsp` + `tombi-lsp` + `yaml-lsp` + `ruff-formatter` + `biome-formatter` + `prettier-formatter` | One install for broad multi-language LSP + formatter coverage. Picks Biome over `typescript-lsp`/`vscode-css-lsp`/`vscode-json-lsp` to keep every extension owned by exactly one server &mdash; don't install both this and its standalone equivalents |
+| [`languages-pack`](plugins/languages-pack) | `biome-lsp` + `vscode-html-lsp` + `bash-lsp` + `basedpyright-lsp` + `tombi-lsp` + `yaml-lsp` + `php-lsp` + `liquid-lsp` + `clangd-lsp` + `csharp-lsp` + `gopls-lsp` + `jdtls-lsp` + `kotlin-lsp` + `lua-lsp` + `ruby-lsp` + `rust-analyzer-lsp` + `swift-lsp` + `ruff-formatter` + `biome-formatter` + `prettier-formatter` | One install for broad multi-language LSP + formatter coverage. Picks Biome over `typescript-lsp`/`vscode-css-lsp`/`vscode-json-lsp` to keep every extension owned by exactly one server &mdash; don't install both this and its standalone equivalents |
 
 > Additional plugin kinds (slash commands, agents, specialized hooks) may be added as I start using them.
 
@@ -94,6 +115,7 @@ Rules shared by plugin categories in this marketplace:
 2. **Fallback by _distribution_ ecosystem, not by _language_ ecosystem.** `typescript-language-server` ships on npm &mdash; so it routes through the JS/TS chain. Basedpyright ships on PyPI &mdash; so it uses the Python chain.
 3. **Metadata-only plugin folders.** `plugin.json` wires the launcher path; the launcher resolves the binary. Nothing is vendored, nothing is pinned beyond the tool's own versioning.
 4. **One tool per language.** Where two tools could format or check the same file type, only one is kept, to avoid conflicting or racing hooks. Example: `biome-formatter` owns JS/TS/JSON, while `prettier-formatter` owns CSS/HTML/Markdown/YAML.
+5. **Native-toolchain exception, honestly labeled.** When a language server has no npm/PyPI distribution at all (C/C++, C#, Go, Java, Kotlin, Lua, Ruby, Rust, Swift), there's nothing for a launcher to wrap. These plugins set `command` to the bare binary name directly and document the native install path in their README instead &mdash; the same approach the [official Anthropic plugin directory](https://github.com/anthropics/claude-plugins-official) takes for these languages.
 
 Formatter hooks additionally follow a **graceful-miss** contract: if no runtime on the fallback chain is present, the hook exits `0` silently rather than blocking the write. This is intentional &mdash; a missing formatter shouldn't break the edit flow.
 
@@ -108,11 +130,13 @@ Formatter hooks additionally follow a **graceful-miss** contract: if no runtime 
 │       ├── .claude-plugin/
 │       │   └── plugin.json       # plugin metadata
 │       ├── scripts/
-│       │   └── launch-<name>.sh  # runtime fallback wrapper
+│       │   └── launch-<name>.sh  # runtime fallback wrapper (zero-install servers only)
 │       └── README.md
 ├── LICENSE
 └── README.md
 ```
+
+Native-toolchain language server plugins (no npm/PyPI distribution) omit the `scripts/` folder entirely &mdash; their `plugin.json` command is the bare binary name.
 
 ## Contributing
 
@@ -120,10 +144,10 @@ This marketplace is primarily for my own use, and I don't promise any particular
 
 To add a new plugin:
 
-1. **Pick the runtime chain** based on how the tool is _distributed_, not what it analyzes. Rule of thumb: if it ships on npm, use the JS/TS chain; if it ships on PyPI, use the Python chain.
-2. **Create `plugins/<name>/`** with a `.claude-plugin/plugin.json`, a `scripts/launch-<name>.sh` runtime-fallback wrapper (or a formatter hook script), and a `README.md`. Use an existing plugin of the same kind as a reference &mdash; each one differs enough in specifics that a generic scaffold isn't worth maintaining.
+1. **Pick the runtime chain** based on how the tool is _distributed_, not what it analyzes. Rule of thumb: if it ships on npm, use the JS/TS chain; if it ships on PyPI, use the Python chain; if it ships neither, it's a native-toolchain plugin (see below).
+2. **Create `plugins/<name>/`** with a `.claude-plugin/plugin.json`, a `scripts/launch-<name>.sh` runtime-fallback wrapper (or a formatter hook script), and a `README.md`. Use an existing plugin of the same kind as a reference &mdash; each one differs enough in specifics that a generic scaffold isn't worth maintaining. For a native-toolchain server (no npm/PyPI package), skip the `scripts/` folder and set `plugin.json`'s `lspServers.<key>.command` directly to the bare binary name; document the install path (`brew`/`apt`/`dnf`/language-specific installer) in the README instead.
 3. **Register the plugin** by appending an entry to [`.claude-plugin/marketplace.json`](.claude-plugin/marketplace.json).
-4. **Sanity-check the launcher** by invoking it directly &mdash; and, if you want to confirm the fallback works, try unsetting each runtime in turn (`PATH` manipulation works) and check the launcher still resolves with any single one present.
+4. **Sanity-check the launcher** by invoking it directly &mdash; and, if you want to confirm the fallback works, try unsetting each runtime in turn (`PATH` manipulation works) and check the launcher still resolves with any single one present. For native-toolchain plugins, just confirm the binary is resolvable on `PATH` and Claude Code's `/plugin` Errors panel shows no "Executable not found" error.
 
 ## License
 

@@ -1,0 +1,17 @@
+{
+	"name": "php-lsp",
+	"version": "0.1.0",
+	"description": "Intelephense PHP language server. bunx / pnpm dlx / npx fallback.",
+	"author": { "name": "yousiki" },
+	"homepage": "https://github.com/yousiki/claude-plugins/tree/main/plugins/php-lsp",
+	"license": "MIT",
+	"lspServers": {
+		"intelephense": {
+			"command": "${CLAUDE_PLUGIN_ROOT}/scripts/launch-php-lsp.sh",
+			"args": ["--stdio"],
+			"extensionToLanguage": {
+				".php": "php"
+			}
+		}
+	}
+}

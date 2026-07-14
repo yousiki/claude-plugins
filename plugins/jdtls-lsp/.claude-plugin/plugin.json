@@ -1,0 +1,17 @@
+{
+	"name": "jdtls-lsp",
+	"version": "0.1.0",
+	"description": "Eclipse JDT.LS Java language server. Requires the jdtls launcher on PATH and a JDK — no npm/PyPI package to fall back through.",
+	"author": { "name": "yousiki" },
+	"homepage": "https://github.com/yousiki/claude-plugins/tree/main/plugins/jdtls-lsp",
+	"license": "MIT",
+	"lspServers": {
+		"jdtls": {
+			"command": "jdtls",
+			"extensionToLanguage": {
+				".java": "java"
+			},
+			"startupTimeout": 120000
+		}
+	}
+}

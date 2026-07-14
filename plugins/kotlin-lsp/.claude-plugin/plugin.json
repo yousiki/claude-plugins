@@ -1,0 +1,19 @@
+{
+	"name": "kotlin-lsp",
+	"version": "0.1.0",
+	"description": "JetBrains kotlin-lsp Kotlin language server. Requires the kotlin-lsp binary on PATH — no npm/PyPI package to fall back through.",
+	"author": { "name": "yousiki" },
+	"homepage": "https://github.com/yousiki/claude-plugins/tree/main/plugins/kotlin-lsp",
+	"license": "MIT",
+	"lspServers": {
+		"kotlin-lsp": {
+			"command": "kotlin-lsp",
+			"args": ["--stdio"],
+			"extensionToLanguage": {
+				".kt": "kotlin",
+				".kts": "kotlin"
+			},
+			"startupTimeout": 120000
+		}
+	}
+}

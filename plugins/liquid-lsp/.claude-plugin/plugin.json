@@ -1,0 +1,16 @@
+{
+	"name": "liquid-lsp",
+	"version": "0.1.0",
+	"description": "Shopify Liquid template language server (Shopify CLI `theme language-server`). bunx / pnpm dlx / npx fallback.",
+	"author": { "name": "yousiki" },
+	"homepage": "https://github.com/yousiki/claude-plugins/tree/main/plugins/liquid-lsp",
+	"license": "MIT",
+	"lspServers": {
+		"liquid": {
+			"command": "${CLAUDE_PLUGIN_ROOT}/scripts/launch-liquid-lsp.sh",
+			"extensionToLanguage": {
+				".liquid": "liquid"
+			}
+		}
+	}
+}

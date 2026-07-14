@@ -1,0 +1,16 @@
+{
+	"name": "gopls-lsp",
+	"version": "0.1.0",
+	"description": "gopls Go language server. Requires the gopls binary on PATH — no npm/PyPI package to fall back through.",
+	"author": { "name": "yousiki" },
+	"homepage": "https://github.com/yousiki/claude-plugins/tree/main/plugins/gopls-lsp",
+	"license": "MIT",
+	"lspServers": {
+		"gopls": {
+			"command": "gopls",
+			"extensionToLanguage": {
+				".go": "go"
+			}
+		}
+	}
+}

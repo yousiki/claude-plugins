@@ -1,0 +1,20 @@
+{
+	"name": "ruby-lsp",
+	"version": "0.1.0",
+	"description": "Shopify ruby-lsp Ruby language server. Requires the ruby-lsp gem on PATH — no npm/PyPI package to fall back through.",
+	"author": { "name": "yousiki" },
+	"homepage": "https://github.com/yousiki/claude-plugins/tree/main/plugins/ruby-lsp",
+	"license": "MIT",
+	"lspServers": {
+		"ruby-lsp": {
+			"command": "ruby-lsp",
+			"extensionToLanguage": {
+				".rb": "ruby",
+				".rake": "ruby",
+				".gemspec": "ruby",
+				".ru": "ruby",
+				".erb": "erb"
+			}
+		}
+	}
+}
