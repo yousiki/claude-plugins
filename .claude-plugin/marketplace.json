@@ -252,6 +252,13 @@
 			"description": "yaml-language-server with built-in schema catalog (GitHub Actions, Kubernetes, docker-compose). bunx / pnpm dlx / npx fallback.",
 			"version": "0.1.2",
 			"category": "development"
+		},
+		{
+			"name": "zotero",
+			"source": "./plugins/zotero",
+			"description": "Zotero MCP server (54yyyu/zotero-mcp) — search, full text, annotations, notes, and item management over your Zotero library. Local stdio; uvx / pipx run fallback. Ships a /zotero:setup slash command.",
+			"version": "0.1.0",
+			"category": "research"
 		}
 	]
 }

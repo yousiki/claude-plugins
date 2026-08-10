@@ -1,0 +1,8 @@
+{
+  "name": "zotero",
+  "version": "0.1.0",
+  "description": "Zotero MCP server (54yyyu/zotero-mcp) — search, read, annotate, and add items in your Zotero library. Local stdio, zero-install via uvx / pipx run.",
+  "author": { "name": "yousiki" },
+  "homepage": "https://github.com/yousiki/claude-plugins/tree/main/plugins/zotero",
+  "license": "MIT"
+}

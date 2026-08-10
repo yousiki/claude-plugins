@@ -4,11 +4,11 @@
 
 **A personal marketplace of [Claude Code](https://docs.claude.com/en/docs/claude-code) plugins.**
 
-Language servers, MCP servers, formatter hooks, and room for future plugin kinds such as slash commands and agents. Most tool-backed plugins are wrapped in launchers that probe a runtime fallback chain (`bunx` / `uvx` and friends), so nothing has to be installed globally on the host; a smaller set of language servers with no npm/PyPI distribution invoke their native-toolchain binary directly instead &mdash; see [Design](#design).
+Language servers, MCP servers, formatter hooks, a slash command, and room for future plugin kinds such as agents. Most tool-backed plugins are wrapped in launchers that probe a runtime fallback chain (`bunx` / `uvx` and friends), so nothing has to be installed globally on the host; a smaller set of language servers with no npm/PyPI distribution invoke their native-toolchain binary directly instead &mdash; see [Design](#design).
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-plugin%20marketplace-6B4FBB)](https://docs.claude.com/en/docs/claude-code)
-[![Plugins](https://img.shields.io/badge/plugins-26-brightgreen)](#plugins)
+[![Plugins](https://img.shields.io/badge/plugins-27-brightgreen)](#plugins)
 [![Maintenance](https://img.shields.io/badge/status-active-success)](#)
 
 [Install](#install) &nbsp;·&nbsp; [Plugins](#plugins) &nbsp;·&nbsp; [Design](#design) &nbsp;·&nbsp; [Layout](#repository-layout) &nbsp;·&nbsp; [Contributing](#contributing)
@@ -22,13 +22,13 @@ Language servers, MCP servers, formatter hooks, and room for future plugin kinds
 - **No global installs, where the ecosystem allows it.** Most plugins launch through a runtime fallback chain &mdash; JS/TS via `bunx` → `pnpm dlx` → `npx`, Python via `uvx` → `pipx run`. You only need one runtime from each chain on `PATH`.
 - **On-demand resolution.** Packages resolve from the registry at launch time, so there are no pinned global binaries to keep up to date.
 - **Native-toolchain servers, honestly labeled.** A handful of language servers (C/C++, C#, Go, Java, Kotlin, Lua, Ruby, Rust, Swift) have no npm/PyPI package to run on demand &mdash; their plugin invokes the bare binary and expects it already on `PATH`, same as the [official Anthropic plugin directory](https://github.com/anthropics/claude-plugins-official) does for these languages.
-- **Broad plugin coverage.** Current plugins span language servers, MCP servers, `PostToolUse` formatter hooks, and an all-in-one bundle (`languages-pack`); the marketplace is structured to add future Claude Code plugin kinds such as slash commands and agents.
+- **Broad plugin coverage.** Current plugins span language servers, MCP servers, `PostToolUse` formatter hooks, and an all-in-one bundle (`languages-pack`). `zotero` adds the first slash command (`/zotero:setup`); the marketplace is structured to add future Claude Code plugin kinds such as agents.
 - **Metadata-only folders.** One folder per plugin &mdash; no vendored binaries, no submodules.
 - **Personal scope.** These are the tools I reach for; expect the roster to drift as my own workflow changes.
 
 ## Plugins
 
-Grouped by current [plugin kind](https://docs.claude.com/en/docs/claude-code/plugins). The roster is 26 plugins across language servers, MCP servers, formatter hooks, and one all-in-one bundle; future categories can be added when they become useful. All plugins live under [`plugins/`](plugins/) and are registered in [`.claude-plugin/marketplace.json`](.claude-plugin/marketplace.json).
+Grouped by current [plugin kind](https://docs.claude.com/en/docs/claude-code/plugins). The roster is 27 plugins across language servers, MCP servers, formatter hooks, and one all-in-one bundle; future categories can be added when they become useful. All plugins live under [`plugins/`](plugins/) and are registered in [`.claude-plugin/marketplace.json`](.claude-plugin/marketplace.json).
 
 ### Language Servers &mdash; zero-install (11)
 
@@ -64,12 +64,15 @@ No npm/PyPI package exists for these, so there's no fallback chain to wrap &mdas
 | [`rust-analyzer-lsp`](plugins/rust-analyzer-lsp) | Rust | `rust-analyzer` | `rustup component add rust-analyzer` |
 | [`swift-lsp`](plugins/swift-lsp) | Swift | `sourcekit-lsp` | Bundled with any Swift toolchain (Xcode or swift.org) |
 
-### MCP Servers (2)
+### MCP Servers (3)
 
 | Plugin | Purpose | Transport |
 | --- | --- | --- |
 | [`context7`](plugins/context7) | Up-to-date library documentation lookup (Upstash Context7) | Remote HTTP |
 | [`deepwiki`](plugins/deepwiki) | AI-grounded Q&A over any public GitHub repo's wiki (Devin DeepWiki) | Remote HTTP |
+| [`zotero`](plugins/zotero) | Zotero library search, full text, annotations, and item management ([54yyyu/zotero-mcp](https://github.com/54yyyu/zotero-mcp)) | Local stdio (`uvx` / `pipx run`) |
+
+`zotero` also ships the marketplace's first slash command, `/zotero:setup`, which picks local vs. web API access and writes the per-user config the server reads at startup. No credentials live in this repo.
 
 ### Hooks &mdash; Formatters (3)
 
@@ -87,7 +90,7 @@ Auto-format on `PostToolUse` of `Write` / `Edit` / `MultiEdit`. `biome-formatter
 | --- | --- | --- |
 | [`languages-pack`](plugins/languages-pack) | `biome-lsp` + `vscode-html-lsp` + `bash-lsp` + `basedpyright-lsp` + `tombi-lsp` + `yaml-lsp` + `php-lsp` + `liquid-lsp` + `clangd-lsp` + `csharp-lsp` + `gopls-lsp` + `jdtls-lsp` + `kotlin-lsp` + `lua-lsp` + `ruby-lsp` + `rust-analyzer-lsp` + `swift-lsp` + `ruff-formatter` + `biome-formatter` + `prettier-formatter` | One install for broad multi-language LSP + formatter coverage. Picks Biome over `typescript-lsp`/`vscode-css-lsp`/`vscode-json-lsp` to keep every extension owned by exactly one server &mdash; don't install both this and its standalone equivalents |
 
-> Additional plugin kinds (slash commands, agents, specialized hooks) may be added as I start using them.
+> Additional plugin kinds (agents, specialized hooks) may be added as I start using them. Slash commands are covered so far by `zotero`'s `/zotero:setup`, which ships inside that plugin rather than as a standalone entry.
 
 ## Install
 

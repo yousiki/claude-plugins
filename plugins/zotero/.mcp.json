@@ -1,0 +1,7 @@
+{
+  "mcpServers": {
+    "zotero": {
+      "command": "${CLAUDE_PLUGIN_ROOT}/scripts/launch-zotero.sh"
+    }
+  }
+}
