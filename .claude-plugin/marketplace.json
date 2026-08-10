@@ -99,8 +99,8 @@
 		{
 			"name": "languages-pack",
 			"source": "./plugins/languages-pack",
-			"description": "All-in-one bundle of this marketplace's non-overlapping language servers (biome, vscode-html, bash, basedpyright, tombi, yaml) and formatter hooks (biome, prettier, ruff). One install for broad multi-language coverage.",
-			"version": "0.1.0",
+			"description": "All-in-one bundle of this marketplace's non-overlapping language servers — zero-install (biome, vscode-html, bash, basedpyright, tombi, yaml, intelephense, liquid) plus native-toolchain (clangd, csharp-ls, gopls, jdtls, kotlin-lsp, lua, ruby-lsp, rust-analyzer, sourcekit-lsp) — and formatter hooks (biome, prettier, ruff). One install for broad multi-language coverage; don't install alongside the standalone equivalents.",
+			"version": "0.3.0",
 			"category": "development",
 			"hooks": {
 				"PostToolUse": [
